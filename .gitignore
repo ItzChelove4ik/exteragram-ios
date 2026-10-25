@@ -1,0 +1,32 @@
+# Build outputs
+build/
+dist/
+out/
+
+# Tools / decompiler work dirs
+tools/jadx*/
+tools/apktool*/
+tools/work/
+*.exe
+*.jar
+!tools/scripts/*
+
+# Decompile temp
+.tmp/
+
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+xcuserdata/
+*.xcuserstate
+
+# Fastlane
+fastlane/report.xml
+
+# Node
+node_modules/
+
+# LFS caches
+.lfs/
