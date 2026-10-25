@@ -1,0 +1,3 @@
+[submodule "ios/telegram-ios"]
+	path = ios/telegram-ios
+	url = https://github.com/telegrammessenger/telegram-ios.git
