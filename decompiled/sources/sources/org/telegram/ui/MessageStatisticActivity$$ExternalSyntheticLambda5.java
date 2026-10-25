@@ -1,0 +1,19 @@
+package org.telegram.ui;
+
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+
+/* loaded from: classes6.dex */
+public final /* synthetic */ class MessageStatisticActivity$$ExternalSyntheticLambda5 implements RequestDelegate {
+    public final /* synthetic */ MessageStatisticActivity f$0;
+
+    public /* synthetic */ MessageStatisticActivity$$ExternalSyntheticLambda5(MessageStatisticActivity r1) {
+        this.f$0 = r1;
+    }
+
+    @Override // org.telegram.tgnet.RequestDelegate
+    public final void run(TLObject r1, TLRPC.TL_error r2) {
+        MessageStatisticActivity.$r8$lambda$_BvznTRz27wGRhNUZ1IgJuRh8Ak(this.f$0, r1, r2);
+    }
+}

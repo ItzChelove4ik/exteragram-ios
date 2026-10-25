@@ -1,0 +1,29 @@
+package ru.noties.jlatexmath.awt.image;
+
+import ru.noties.jlatexmath.awt.Graphics2D;
+import ru.noties.jlatexmath.awt.Image;
+
+/* loaded from: classes7.dex */
+public class BufferedImage extends Image {
+    public static final int TYPE_INT_ARGB = 2;
+    public static final int TYPE_INT_RGB = 1;
+
+    public BufferedImage(int r1, int r2, int r3) {
+    }
+
+    public Graphics2D createGraphics() {
+        return null;
+    }
+
+    public int getHeight() {
+        return 0;
+    }
+
+    public int getRGB(int r1, int r2) {
+        return 0;
+    }
+
+    public int getWidth() {
+        return 0;
+    }
+}

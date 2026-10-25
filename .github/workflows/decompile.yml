@@ -1,0 +1,78 @@
+name: Decompile APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'apk/**'
+
+jobs:
+  decompile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Download tools
+        run: |
+          curl -sL -o jadx.zip https://github.com/skylot/jadx/releases/download/v1.5.2/jadx-1.5.2.zip
+          unzip -q jadx.zip -d jadx
+          chmod +x jadx/bin/jadx
+          curl -sL -o apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v2.12.1/apktool_2.12.1.jar
+
+      - name: Find APK
+        id: apk
+        shell: bash
+        run: |
+          APK=$(ls apk/*.apk | head -1)
+          echo "apk=$APK" >> "$GITHUB_OUTPUT"
+          echo "Found: $APK"
+
+      - name: Run jadx (Java sources)
+        run: |
+          ./jadx/bin/jadx -j 4 --no-debug-info --no-inline-anonymous --decompilation-mode simple \
+            -d decompiled/sources "${{ steps.apk.outputs.apk }}" || true
+          # jadx returns non-zero when some classes fail; sources are still produced
+
+      - name: Run apktool (resources)
+        run: |
+          java -jar apktool.jar d -f -o decompiled/resources "${{ steps.apk.outputs.apk }}"
+
+      - name: Summarize
+        run: |
+          echo "== Package map =="
+          ls decompiled/sources/sources | sed 's/^/  /' || true
+          echo "== Resource dirs =="
+          ls decompiled/resources/res | sed 's/^/  /' | head -50 || true
+          echo "== Counts =="
+          echo "java files: $(find decompiled/sources -name '*.java' | wc -l)"
+          echo "resource files: $(find decompiled/resources/res -type f | wc -l)"
+
+      - name: Upload decompiled artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: decompiled-sources
+          path: |
+            decompiled/sources/sources
+          retention-days: 30
+          compression-level: 6
+
+      - name: Upload resources artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: decompiled-resources
+          path: |
+            decompiled/resources/res
+            decompiled/resources/AndroidManifest.xml
+            decompiled/resources/apktool.yml
+          retention-days: 30
+          compression-level: 6

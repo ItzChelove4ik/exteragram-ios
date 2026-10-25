@@ -1,0 +1,34 @@
+package org.telegram.messenger;
+
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+
+/* loaded from: classes5.dex */
+public final /* synthetic */ class MessagesController$$ExternalSyntheticLambda290 implements Runnable {
+    public final /* synthetic */ MessagesController f$0;
+    public final /* synthetic */ ArrayList f$1;
+    public final /* synthetic */ long f$2;
+    public final /* synthetic */ TLRPC.TL_messages_affectedHistory f$3;
+    public final /* synthetic */ long f$4;
+    public final /* synthetic */ int f$5;
+    public final /* synthetic */ int f$6;
+    public final /* synthetic */ boolean f$7;
+    public final /* synthetic */ Runnable f$8;
+
+    public /* synthetic */ MessagesController$$ExternalSyntheticLambda290(MessagesController r1, ArrayList r2, long r3, TLRPC.TL_messages_affectedHistory r5, long r6, int r8, int r9, boolean r10, Runnable r11) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+        this.f$2 = r3;
+        this.f$3 = r5;
+        this.f$4 = r6;
+        this.f$5 = r8;
+        this.f$6 = r9;
+        this.f$7 = r10;
+        this.f$8 = r11;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        MessagesController.m4511$r8$lambda$9dbSkESrl_3KbmAVjuRPflyBP8(this.f$0, this.f$1, this.f$2, this.f$3, this.f$4, this.f$5, this.f$6, this.f$7, this.f$8);
+    }
+}

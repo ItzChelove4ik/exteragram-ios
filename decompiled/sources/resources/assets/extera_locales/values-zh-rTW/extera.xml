@@ -1,0 +1,35 @@
+le">新角色</string>
+    <string name="EditRole">編輯角色</string>
+    <string name="HistoryInfo">對話紀錄能夠幫助 AI 藉由先前的對話及回應來產生後續的答覆內容。</string>
+    <string name="ResponseStreaming">持續回應</string>
+    <string name="ResponseStreamingInfo">使後續的回應能夠更快、更順暢。</string>
+    <string name="ShowResponseOnly">只顯示回應</string>
+    <string name="TapToAddApiKey">輕觸此處新增 API 密鑰來使用 AI及相關功能。</string>
+    <string name="Generate">生成</string>
+    <string name="ClearConversationHistoryInfo">您確定要刪除**所有的** AI 對話紀錄嗎？</string>
+    <!-- Bot Button information -->
+    <string name="CopyTitle">複製標題</string>
+    <string name="CopyCallback">複製回傳資料</string>
+    <string name="CopyInlineQuery">複製內嵌查詢</string>
+    <string name="CopyID">複製使用者 ID</string>
+    <!-- Other -->
+    <string name="RestartRequired">重新啟動應用程式以生效。</string>
+    <string name="ResetPreferences">已重置 **exteraGram** 設定</string>
+    <string name="ResetPreferencesInfo">您確定要重置**所有**的 exteraGram 設定？</string>
+    <string name="UserNotFound">找不到該 **ID** 所對應的使用者。</string>
+    <string name="PhotoCopied">圖片已複製到剪貼簿</string>
+    <string name="MutualContactInfo">你們彼此有將對方加為聯絡人。</string>
+    <string name="ToBeginning">至開頭</string>
+    <string name="MessageHistory">訊息歷史記錄</string>
+    <string name="BoldItalic">粗體斜體</string>
+    <string name="CopyPhoto">複製圖片</string>
+    <string name="StickerSavedHint">貼圖已儲存到您的手機相簿</string>
+    <string name="TrackSaved">追蹤已儲存至 **%1$s**。</string>
+    <string name="ChannelToSaveChanged">曲目將會儲存至 **%1$s**</string>
+    <string name="AppIconAurora">極光</string>
+    <string name="AppIconAmethyst">紫晶</string>
+    <string name="AppIconSpace">太空</string>
+    <string name="AppIconOrbit">星軌</string>
+    <string name="AppIconSus">內鬼</string>
+    <string name="AppIconWinter">冬至</string>
+</resources>

@@ -1,0 +1,10 @@
+package com.exteragram.messenger.plugins.utils;
+
+import java.util.Objects;
+
+/* loaded from: classes4.dex */
+public abstract /* synthetic */ class ClassProxy$FieldSpec$$ExternalSyntheticRecord0 {
+    public static /* synthetic */ int m(int r0, Object r1, Object r2, Object r3) {
+        return (((((r0 * 31) + Objects.hashCode(r1)) * 31) + Objects.hashCode(r2)) * 31) + Objects.hashCode(r3);
+    }
+}

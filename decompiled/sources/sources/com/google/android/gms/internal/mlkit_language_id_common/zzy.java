@@ -1,0 +1,51 @@
+package com.google.android.gms.internal.mlkit_language_id_common;
+
+/* loaded from: classes.dex */
+final class zzy extends zzu {
+    static final zzu zza = null;
+    final transient Object[] zzb;
+    private final transient int zzc;
+
+    static {
+        zza = new zzy(new Object[0], 0);
+    }
+
+    public zzy(Object[] r1, int r2) {
+        this.zzb = r1;
+        this.zzc = r2;
+    }
+
+    @Override // java.util.List
+    public final Object get(int r3) {
+        zzk.zza(r3, this.zzc, "index");
+        Object r2 = this.zzb[r3];
+        r2.getClass();
+        return r2;
+    }
+
+    @Override // java.util.AbstractCollection, java.util.Collection, java.util.List
+    public final int size() {
+        return this.zzc;
+    }
+
+    @Override // com.google.android.gms.internal.mlkit_language_id_common.zzu, com.google.android.gms.internal.mlkit_language_id_common.zzq
+    public final int zza(Object[] r3, int r4) {
+        System.arraycopy(this.zzb, 0, r3, 0, this.zzc);
+        return this.zzc;
+    }
+
+    @Override // com.google.android.gms.internal.mlkit_language_id_common.zzq
+    public final int zzb() {
+        return this.zzc;
+    }
+
+    @Override // com.google.android.gms.internal.mlkit_language_id_common.zzq
+    public final int zzc() {
+        return 0;
+    }
+
+    @Override // com.google.android.gms.internal.mlkit_language_id_common.zzq
+    public final Object[] zze() {
+        return this.zzb;
+    }
+}

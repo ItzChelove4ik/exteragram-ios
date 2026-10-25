@@ -1,0 +1,161 @@
+package com.google.android.gms.internal.mlkit_vision_common;
+
+import com.google.firebase.encoders.config.Configurator;
+import com.google.firebase.encoders.config.EncoderConfig;
+
+/* loaded from: classes4.dex */
+public final class zzhe implements Configurator {
+    public static final Configurator zza = null;
+
+    static {
+        zza = new zzhe();
+    }
+
+    private zzhe() {
+    }
+
+    @Override // com.google.firebase.encoders.config.Configurator
+    public final void configure(EncoderConfig r2) {
+        r2.registerEncoder(zziy.class, zzeo.zza);
+        r2.registerEncoder(zzla.class, zzgu.zza);
+        r2.registerEncoder(zziz.class, zzep.zza);
+        r2.registerEncoder(zzjc.class, zzer.zza);
+        r2.registerEncoder(zzja.class, zzeq.zza);
+        r2.registerEncoder(zzjb.class, zzes.zza);
+        r2.registerEncoder(zzhy.class, zzdr.zza);
+        r2.registerEncoder(zzhx.class, zzdq.zza);
+        r2.registerEncoder(zzim.class, zzeh.zza);
+        r2.registerEncoder(zzku.class, zzgm.zza);
+        r2.registerEncoder(zzhw.class, zzdp.zza);
+        r2.registerEncoder(zzhv.class, zzdo.zza);
+        r2.registerEncoder(zzjl.class, zzfd.zza);
+        r2.registerEncoder(zzlu.class, zzeb.zza);
+        r2.registerEncoder(zzij.class, zzee.zza);
+        r2.registerEncoder(zzig.class, zzea.zza);
+        r2.registerEncoder(zzjm.class, zzfe.zza);
+        r2.registerEncoder(zzkr.class, zzgj.zza);
+        r2.registerEncoder(zzks.class, zzgk.zza);
+        r2.registerEncoder(zzkq.class, zzgi.zza);
+        r2.registerEncoder(zzjg.class, zzey.zza);
+        r2.registerEncoder(zzlt.class, zzcy.zza);
+        r2.registerEncoder(zzjh.class, zzez.zza);
+        r2.registerEncoder(zzju.class, zzfm.zza);
+        r2.registerEncoder(zzjx.class, zzfp.zza);
+        r2.registerEncoder(zzjw.class, zzfo.zza);
+        r2.registerEncoder(zzjv.class, zzfn.zza);
+        r2.registerEncoder(zzkg.class, zzfy.zza);
+        r2.registerEncoder(zzkh.class, zzfz.zza);
+        r2.registerEncoder(zzkj.class, zzgb.zza);
+        r2.registerEncoder(zzki.class, zzga.zza);
+        r2.registerEncoder(zzjf.class, zzex.zza);
+        r2.registerEncoder(zzkk.class, zzgc.zza);
+        r2.registerEncoder(zzkl.class, zzgd.zza);
+        r2.registerEncoder(zzkm.class, zzge.zza);
+        r2.registerEncoder(zzkn.class, zzgf.zza);
+        r2.registerEncoder(zzkp.class, zzgg.zza);
+        r2.registerEncoder(zzko.class, zzgh.zza);
+        r2.registerEncoder(zzkf.class, zzfu.zza);
+        r2.registerEncoder(zzit.class, zzem.zza);
+        r2.registerEncoder(zzkd.class, zzfw.zza);
+        r2.registerEncoder(zzkc.class, zzfv.zza);
+        r2.registerEncoder(zzke.class, zzfx.zza);
+        r2.registerEncoder(zzkt.class, zzgl.zza);
+        r2.registerEncoder(zzlg.class, zzha.zza);
+        r2.registerEncoder(zzhk.class, zzdd.zza);
+        r2.registerEncoder(zzhi.class, zzdb.zza);
+        r2.registerEncoder(zzhh.class, zzda.zza);
+        r2.registerEncoder(zzhj.class, zzdc.zza);
+        r2.registerEncoder(zzhm.class, zzdf.zza);
+        r2.registerEncoder(zzhl.class, zzde.zza);
+        r2.registerEncoder(zzhn.class, zzdg.zza);
+        r2.registerEncoder(zzho.class, zzdh.zza);
+        r2.registerEncoder(zzhp.class, zzdi.zza);
+        r2.registerEncoder(zzhq.class, zzdj.zza);
+        r2.registerEncoder(zzhr.class, zzdk.zza);
+        r2.registerEncoder(zzbq.class, zzcu.zza);
+        r2.registerEncoder(zzbs.class, zzcw.zza);
+        r2.registerEncoder(zzbr.class, zzcv.zza);
+        r2.registerEncoder(zzir.class, zzek.zza);
+        r2.registerEncoder(zzhz.class, zzds.zza);
+        r2.registerEncoder(zzar.class, zzbu.zza);
+        r2.registerEncoder(zzaq.class, zzbv.zza);
+        r2.registerEncoder(zzie.class, zzdy.zza);
+        r2.registerEncoder(zzat.class, zzbw.zza);
+        r2.registerEncoder(zzas.class, zzbx.zza);
+        r2.registerEncoder(zzaz.class, zzcc.zza);
+        r2.registerEncoder(zzay.class, zzcd.zza);
+        r2.registerEncoder(zzav.class, zzby.zza);
+        r2.registerEncoder(zzau.class, zzbz.zza);
+        r2.registerEncoder(zzbf.class, zzci.zza);
+        r2.registerEncoder(zzbe.class, zzcj.zza);
+        r2.registerEncoder(zzbj.class, zzcm.zza);
+        r2.registerEncoder(zzbi.class, zzcn.zza);
+        r2.registerEncoder(zzbp.class, zzcs.zza);
+        r2.registerEncoder(zzbo.class, zzct.zza);
+        r2.registerEncoder(zzbl.class, zzco.zza);
+        r2.registerEncoder(zzbk.class, zzcp.zza);
+        r2.registerEncoder(zzbn.class, zzcq.zza);
+        r2.registerEncoder(zzbm.class, zzcr.zza);
+        r2.registerEncoder(zzlo.class, zzgp.zza);
+        r2.registerEncoder(zzlh.class, zzdt.zza);
+        r2.registerEncoder(zzll.class, zzew.zza);
+        r2.registerEncoder(zzlk.class, zzev.zza);
+        r2.registerEncoder(zzli.class, zzec.zza);
+        r2.registerEncoder(zzln.class, zzgo.zza);
+        r2.registerEncoder(zzlm.class, zzgn.zza);
+        r2.registerEncoder(zzlp.class, zzgq.zza);
+        r2.registerEncoder(zzlj.class, zzei.zza);
+        r2.registerEncoder(zzls.class, zzhc.zza);
+        r2.registerEncoder(zzlr.class, zzhd.zza);
+        r2.registerEncoder(zzlq.class, zzhb.zza);
+        r2.registerEncoder(zzkv.class, zzgr.zza);
+        r2.registerEncoder(zziq.class, zzej.zza);
+        r2.registerEncoder(zziu.class, zzen.zza);
+        r2.registerEncoder(zzhg.class, zzcz.zza);
+        r2.registerEncoder(zzik.class, zzef.zza);
+        r2.registerEncoder(zzis.class, zzel.zza);
+        r2.registerEncoder(zzif.class, zzdz.zza);
+        r2.registerEncoder(zzib.class, zzdv.zza);
+        r2.registerEncoder(zzic.class, zzdw.zza);
+        r2.registerEncoder(zzia.class, zzdu.zza);
+        r2.registerEncoder(zzid.class, zzdx.zza);
+        r2.registerEncoder(zzje.class, zzeu.zza);
+        r2.registerEncoder(zzjd.class, zzet.zza);
+        r2.registerEncoder(zzap.class, zzbt.zza);
+        r2.registerEncoder(zzld.class, zzgx.zza);
+        r2.registerEncoder(zzlf.class, zzgz.zza);
+        r2.registerEncoder(zzle.class, zzgy.zza);
+        r2.registerEncoder(zzhf.class, zzcx.zza);
+        r2.registerEncoder(zzhu.class, zzdn.zza);
+        r2.registerEncoder(zzht.class, zzdm.zza);
+        r2.registerEncoder(zzhs.class, zzdl.zza);
+        r2.registerEncoder(zzji.class, zzfa.zza);
+        r2.registerEncoder(zzjk.class, zzfc.zza);
+        r2.registerEncoder(zzjj.class, zzfb.zza);
+        r2.registerEncoder(zzax.class, zzca.zza);
+        r2.registerEncoder(zzaw.class, zzcb.zza);
+        r2.registerEncoder(zzjn.class, zzff.zza);
+        r2.registerEncoder(zzjq.class, zzfi.zza);
+        r2.registerEncoder(zzjo.class, zzfg.zza);
+        r2.registerEncoder(zzjp.class, zzfh.zza);
+        r2.registerEncoder(zzbb.class, zzce.zza);
+        r2.registerEncoder(zzba.class, zzcf.zza);
+        r2.registerEncoder(zzkx.class, zzgt.zza);
+        r2.registerEncoder(zzkw.class, zzgs.zza);
+        r2.registerEncoder(zzlb.class, zzgv.zza);
+        r2.registerEncoder(zzlc.class, zzgw.zza);
+        r2.registerEncoder(zzjy.class, zzfq.zza);
+        r2.registerEncoder(zzkb.class, zzft.zza);
+        r2.registerEncoder(zzjz.class, zzfr.zza);
+        r2.registerEncoder(zzka.class, zzfs.zza);
+        r2.registerEncoder(zzbh.class, zzck.zza);
+        r2.registerEncoder(zzbg.class, zzcl.zza);
+        r2.registerEncoder(zzil.class, zzeg.zza);
+        r2.registerEncoder(zzih.class, zzed.zza);
+        r2.registerEncoder(zzjr.class, zzfj.zza);
+        r2.registerEncoder(zzjt.class, zzfl.zza);
+        r2.registerEncoder(zzjs.class, zzfk.zza);
+        r2.registerEncoder(zzbd.class, zzcg.zza);
+        r2.registerEncoder(zzbc.class, zzch.zza);
+    }
+}

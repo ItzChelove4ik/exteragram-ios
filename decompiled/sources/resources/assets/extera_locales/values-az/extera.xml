@@ -1,0 +1,50 @@
+e">Fayl adı</string>
+    <string name="FilePath">Fayl yolu</string>
+    <string name="Resolution">Görüntü imkanı</string>
+    <string name="Bitrate">Bit sürəti</string>
+    <string name="MimeType">Mime növü</string>
+    <string name="Datacenter">Məlumat mərkəzi</string>
+    <!-- GPT -->
+    <string name="AIChatInfo">API Açarını, Rolları və Tarixçəni qurun</string>
+    <string name="ServiceKey">API açarı</string>
+    <string name="Roles">Rollar</string>
+    <string name="RolesInfo">Ehtiyaclarınız üçün rollar yaradın!</string>
+    <string name="Suggestions">Təkliflər</string>
+    <string name="RoleName">Ad</string>
+    <string name="RolePrompt">Soruş</string>
+    <string name="PromptInfo">Prompt cavab yaratmaq və ya dialoqu davam etdirmək üçün başlanğıc nöqtəsi kimi modelə təqdim edilən mətndir.</string>
+    <string name="NewRole">Yeni rol</string>
+    <string name="EditRole">Rollara düzəliş et</string>
+    <string name="HistoryInfo">Söhbət tarixçəsi süni intellektə əvvəlki sorğuları və cavabları başa düşməyə və sonrakı cavablar yaradan zaman onları nəzərə almağa imkan verir.</string>
+    <string name="ResponseStreaming">Cavab axını</string>
+    <string name="ResponseStreamingInfo">Cavabların daha hamar və daha sürətli göstərilməsini təmin edir.</string>
+    <string name="ShowResponseOnly">Yalnız Cavabları göstərin</string>
+    <string name="TapToAddApiKey">Süni intellekt funksiyalarından istifadə etməyə başlamaq üçün API Açarını əlavə etmək üçün toxunun.</string>
+    <string name="Generate">Yarat</string>
+    <string name="ClearConversationHistoryInfo">**Bütün** süni intellekt söhbət tarixçəsini silmək istədiyinizə əminsiniz?</string>
+    <!-- Bot Button information -->
+    <string name="CopyTitle">Başlığı kopyalayın</string>
+    <string name="CopyCallback">Geri Zəng Məlumatını Kopyalayın</string>
+    <string name="CopyInlineQuery">Daxili Sorğunu Kopyala</string>
+    <string name="CopyID">İstifadəçi ID-sini kopyala</string>
+    <!-- Other -->
+    <string name="RestartRequired">Effektiv olmaq üçün Tətbiqi yenidən başladın.</string>
+    <string name="ResetPreferences">**exteraGram** tənzimləmələri sıfırlandı.</string>
+    <string name="ResetPreferencesInfo">**bütün** exteraGram tənzimləmələrini defolt olaraq sıfırlamaq istədiyinizə əminsiniz?</string>
+    <string name="UserNotFound">Bu **ID** ilə istifadəçi tapılmadı.</string>
+    <string name="PhotoCopied">Foto buferə kopyalandı.</string>
+    <string name="MutualContactInfo">Bu əlaqə qarşılıqlıdır.</string>
+    <string name="ToBeginning">Başlanğıca get</string>
+    <string name="MessageHistory">Tarix</string>
+    <string name="BoldItalic">Qalın İtalik</string>
+    <string name="CopyPhoto">Şəkilləri kopyala</string>
+    <string name="StickerSavedHint">Stiker qalereyada saxlanıldı</string>
+    <string name="TrackSaved">Trek **%1$s** ünvanında yadda saxlanıldı.</string>
+    <string name="ChannelToSaveChanged">Treklər **%1$s** ünvanında yadda saxlanılacaq.</string>
+    <string name="AppIconAurora">Avrora</string>
+    <string name="AppIconAmethyst">Ametist</string>
+    <string name="AppIconSpace">Kosmos</string>
+    <string name="AppIconOrbit">Orbit</string>
+    <string name="AppIconSus">Fırıldaqçı</string>
+    <string name="AppIconWinter">Qış</string>
+</resources>

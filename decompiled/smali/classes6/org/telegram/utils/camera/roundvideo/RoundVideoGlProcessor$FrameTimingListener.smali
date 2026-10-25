@@ -1,0 +1,19 @@
+.class public interface abstract Lorg/telegram/utils/camera/roundvideo/RoundVideoGlProcessor$FrameTimingListener;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lorg/telegram/utils/camera/roundvideo/RoundVideoGlProcessor;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x609
+    name = "FrameTimingListener"
+.end annotation
+
+
+# virtual methods
+.method public abstract onFrameSubmitted(JJ)V
+.end method

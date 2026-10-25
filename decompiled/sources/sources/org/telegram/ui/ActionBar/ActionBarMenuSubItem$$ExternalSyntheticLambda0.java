@@ -1,0 +1,21 @@
+package org.telegram.ui.ActionBar;
+
+import android.animation.ValueAnimator;
+
+/* loaded from: classes6.dex */
+public final /* synthetic */ class ActionBarMenuSubItem$$ExternalSyntheticLambda0 implements ValueAnimator.AnimatorUpdateListener {
+    public final /* synthetic */ ActionBarMenuSubItem f$0;
+    public final /* synthetic */ int f$1;
+    public final /* synthetic */ int f$2;
+
+    public /* synthetic */ ActionBarMenuSubItem$$ExternalSyntheticLambda0(ActionBarMenuSubItem r1, int r2, int r3) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+        this.f$2 = r3;
+    }
+
+    @Override // android.animation.ValueAnimator.AnimatorUpdateListener
+    public final void onAnimationUpdate(ValueAnimator r3) {
+        ActionBarMenuSubItem.$r8$lambda$Oy0gQwKljpSzEuktR4pWI2vuKvo(this.f$0, this.f$1, this.f$2, r3);
+    }
+}

@@ -1,0 +1,32 @@
+package kotlinx.coroutines.flow;
+
+import kotlin.Metadata;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.jvm.JvmField;
+import kotlinx.coroutines.channels.BufferOverflow;
+import okhttp3.internal.url._UrlKt;
+
+@Metadata(d1 = {"\u0000&\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\b\u0002\u0018\u0000*\u0004\b\u0000\u0010\u00012\u00020\u0002B-\u0012\f\u0010\u0003\u001a\b\u0012\u0004\u0012\u00028\u00000\u0004\u0012\u0006\u0010\u0005\u001a\u00020\u0006\u0012\u0006\u0010\u0007\u001a\u00020\b\u0012\u0006\u0010\t\u001a\u00020\n¢\u0006\u0004\b\u000b\u0010\fR\u0016\u0010\u0003\u001a\b\u0012\u0004\u0012\u00028\u00000\u00048\u0006X\u0087\u0004¢\u0006\u0002\n\u0000R\u0010\u0010\u0005\u001a\u00020\u00068\u0006X\u0087\u0004¢\u0006\u0002\n\u0000R\u0010\u0010\u0007\u001a\u00020\b8\u0006X\u0087\u0004¢\u0006\u0002\n\u0000R\u0010\u0010\t\u001a\u00020\n8\u0006X\u0087\u0004¢\u0006\u0002\n\u0000¨\u0006\r"}, d2 = {"Lkotlinx/coroutines/flow/SharingConfig;", "T", _UrlKt.FRAGMENT_ENCODE_SET, "upstream", "Lkotlinx/coroutines/flow/Flow;", "extraBufferCapacity", _UrlKt.FRAGMENT_ENCODE_SET, "onBufferOverflow", "Lkotlinx/coroutines/channels/BufferOverflow;", "context", "Lkotlin/coroutines/CoroutineContext;", "<init>", "(Lkotlinx/coroutines/flow/Flow;ILkotlinx/coroutines/channels/BufferOverflow;Lkotlin/coroutines/CoroutineContext;)V", "kotlinx-coroutines-core"}, k = 1, mv = {2, 2, 0}, xi = 48)
+/* loaded from: classes5.dex */
+final class SharingConfig<T> {
+
+    @JvmField
+    public final CoroutineContext context;
+
+    @JvmField
+    public final int extraBufferCapacity;
+
+    @JvmField
+    public final BufferOverflow onBufferOverflow;
+
+    @JvmField
+    public final Flow<T> upstream;
+
+    /* JADX WARN: Multi-variable type inference failed */
+    public SharingConfig(Flow<? extends T> r1, int r2, BufferOverflow r3, CoroutineContext r4) {
+        this.upstream = r1;
+        this.extraBufferCapacity = r2;
+        this.onBufferOverflow = r3;
+        this.context = r4;
+    }
+}

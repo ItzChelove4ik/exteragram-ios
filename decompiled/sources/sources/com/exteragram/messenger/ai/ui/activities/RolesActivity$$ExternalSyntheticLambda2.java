@@ -1,0 +1,19 @@
+package com.exteragram.messenger.ai.ui.activities;
+
+import com.exteragram.messenger.ai.data.Role;
+
+/* loaded from: classes4.dex */
+public final /* synthetic */ class RolesActivity$$ExternalSyntheticLambda2 implements Runnable {
+    public final /* synthetic */ RolesActivity f$0;
+    public final /* synthetic */ Role f$1;
+
+    public /* synthetic */ RolesActivity$$ExternalSyntheticLambda2(RolesActivity r1, Role r2) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        RolesActivity.$r8$lambda$0cBzozEYAxC9_T7XloEOX8p4yJI(this.f$0, this.f$1);
+    }
+}

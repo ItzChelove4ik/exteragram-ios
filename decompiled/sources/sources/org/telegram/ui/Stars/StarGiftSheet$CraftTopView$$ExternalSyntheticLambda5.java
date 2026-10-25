@@ -1,0 +1,18 @@
+package org.telegram.ui.Stars;
+
+import android.view.View;
+import org.telegram.ui.Stars.StarGiftSheet;
+
+/* loaded from: classes7.dex */
+public final /* synthetic */ class StarGiftSheet$CraftTopView$$ExternalSyntheticLambda5 implements View.OnClickListener {
+    public final /* synthetic */ StarGiftSheet.CraftTopView f$0;
+
+    public /* synthetic */ StarGiftSheet$CraftTopView$$ExternalSyntheticLambda5(StarGiftSheet.CraftTopView r1) {
+        this.f$0 = r1;
+    }
+
+    @Override // android.view.View.OnClickListener
+    public final void onClick(View r1) {
+        StarGiftSheet.CraftTopView.m19033$r8$lambda$lQ_PXlBxm1JKLM8KeYYetfMcsc(this.f$0, r1);
+    }
+}

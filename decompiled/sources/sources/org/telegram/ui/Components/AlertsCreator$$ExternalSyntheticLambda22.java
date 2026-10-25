@@ -1,0 +1,21 @@
+package org.telegram.ui.Components;
+
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.Components.AlertsCreator;
+
+/* loaded from: classes7.dex */
+public final /* synthetic */ class AlertsCreator$$ExternalSyntheticLambda22 implements View.OnClickListener {
+    public final /* synthetic */ ActionBarMenuItem f$0;
+    public final /* synthetic */ AlertsCreator.ScheduleDatePickerColors f$1;
+
+    public /* synthetic */ AlertsCreator$$ExternalSyntheticLambda22(ActionBarMenuItem r1, AlertsCreator.ScheduleDatePickerColors r2) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+    }
+
+    @Override // android.view.View.OnClickListener
+    public final void onClick(View r2) {
+        AlertsCreator.$r8$lambda$KhcpysP5nkkpDoA4FTkC9k5dpuQ(this.f$0, this.f$1, r2);
+    }
+}

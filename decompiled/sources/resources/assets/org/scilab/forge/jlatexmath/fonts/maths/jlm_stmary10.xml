@@ -1,0 +1,48 @@
+145" height="0.100001" depth="1.500012" />
+   <Char code="138" width="1.1111145" height="0.100001" depth="1.500012" />
+   <Char code="139" width="1.1111145" height="0.100001" depth="1.500012" />
+   <Char code="140" width="1.1111145" height="0.100001" depth="1.500012" />
+   <Char code="141" width="1.1111145" height="0.100001" depth="1.500012" />
+   <Char code="142" width="0.555557" height="0.100001" depth="1.500012" />
+   <Char code="143" width="0.833336" height="0.100001" depth="1.500012" />
+   <Char code="144" width="0.833336" depth="1.000013" >
+      <NextLarger fontId="jlm_stmary10" code="152"/>
+   </Char>
+   <Char code="145" width="0.527781" height="0.039999" depth="1.160013" >
+      <NextLarger fontId="jlm_stmary10" code="146"/>
+   </Char>
+   <Char code="146" width="0.583336" height="0.039999" depth="1.760019" >
+      <NextLarger fontId="jlm_stmary10" code="147"/>
+   </Char>
+   <Char code="147" width="0.638891" height="0.039999" depth="2.360025" >
+      <NextLarger fontId="jlm_stmary10" code="148"/>
+   </Char>
+   <Char code="148" width="0.6944475" height="0.039999" depth="2.9600315" >
+      <NextLarger fontId="jlm_stmary10" code="149"/>
+   </Char>
+   <Char code="149" width="0.777781" height="0.039999" depth="1.760019" >
+      <Extension top="117" bot="118" rep="151" />
+   </Char>
+   <Char code="150" width="0.777781" height="0.039999" depth="1.760019" />
+   <Char code="151" width="0.777781" depth="0.600006" />
+   <Char code="152" width="1.1111145" height="0.100001" depth="1.500012" />
+   <Char code="153" width="0.527781" height="0.039999" depth="1.160013" >
+      <NextLarger fontId="jlm_stmary10" code="154"/>
+   </Char>
+   <Char code="154" width="0.583336" height="0.039999" depth="1.760019" >
+      <NextLarger fontId="jlm_stmary10" code="155"/>
+   </Char>
+   <Char code="155" width="0.638891" height="0.039999" depth="2.360025" >
+      <NextLarger fontId="jlm_stmary10" code="156"/>
+   </Char>
+   <Char code="156" width="0.6944475" height="0.039999" depth="2.9600315" >
+      <NextLarger fontId="jlm_stmary10" code="157"/>
+   </Char>
+   <Char code="157" width="0.777781" height="0.039999" depth="1.760019" >
+      <Extension top="125" bot="126" rep="159" />
+   </Char>
+   <Char code="158" width="0.777781" height="0.039999" depth="1.760019" />
+   <Char code="159" width="0.777781" depth="0.600006" />
+</Font>
+
+

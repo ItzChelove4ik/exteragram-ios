@@ -1,0 +1,102 @@
+.class final Lcom/google/android/gms/internal/mlkit_genai_prompt/zzew;
+.super Lcom/google/android/gms/internal/mlkit_genai_prompt/zzbo;
+.source "SourceFile"
+
+
+# instance fields
+.field final synthetic zza:Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;
+
+
+# direct methods
+.method public constructor <init>(Lcom/google/android/gms/internal/mlkit_genai_prompt/zzfv;Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;)V
+    .locals 0
+
+    .line 1
+    iput-object p2, p0, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzew;->zza:Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;
+
+    invoke-static {p1}, Ljava/util/Objects;->requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
+
+    invoke-direct {p0}, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzbo;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final zzb(I)V
+    .locals 2
+
+    .line 1
+    iget-object p0, p0, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzew;->zza:Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;
+
+    const/16 p1, 0xe
+
+    const/4 v0, 0x0
+
+    const-string v1, "GetTokenInfo should not invoke onTokenizationSuccess method."
+
+    invoke-static {p1, v1, v0}, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzdo;->zzd(ILjava/lang/String;Ljava/lang/Throwable;)Lcom/google/android/gms/internal/mlkit_genai_prompt/zzdo;
+
+    move-result-object p1
+
+    .line 2
+    invoke-virtual {p0, p1}, Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;->setException(Ljava/lang/Throwable;)Z
+
+    return-void
+.end method
+
+.method public final zzc(I)V
+    .locals 2
+
+    .line 1
+    iget-object p0, p0, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzew;->zza:Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;
+
+    const/4 v0, 0x0
+
+    const-string v1, "Tokenization failed."
+
+    invoke-static {p1, v1, v0}, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzdo;->zzd(ILjava/lang/String;Ljava/lang/Throwable;)Lcom/google/android/gms/internal/mlkit_genai_prompt/zzdo;
+
+    move-result-object p1
+
+    .line 2
+    invoke-virtual {p0, p1}, Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;->setException(Ljava/lang/Throwable;)Z
+
+    return-void
+.end method
+
+.method public final zzd(Lcom/google/android/gms/internal/mlkit_genai_prompt/zzct;)V
+    .locals 0
+
+    .line 1
+    iget-object p0, p0, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzew;->zza:Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;
+
+    invoke-static {p1}, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzdz;->zzb(Lcom/google/android/gms/internal/mlkit_genai_prompt/zzct;)Lcom/google/android/gms/internal/mlkit_genai_prompt/zzdz;
+
+    move-result-object p1
+
+    invoke-virtual {p0, p1}, Landroidx/concurrent/futures/CallbackToFutureAdapter$Completer;->set(Ljava/lang/Object;)Z
+
+    return-void
+.end method
+
+.method public final zze(Lcom/google/android/gms/internal/mlkit_genai_prompt/zzq;)V
+    .locals 0
+
+    if-nez p1, :cond_0
+
+    const/4 p1, 0x0
+
+    goto :goto_0
+
+    .line 1
+    :cond_0
+    invoke-virtual {p1}, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzq;->zzb()I
+
+    move-result p1
+
+    :goto_0
+    invoke-virtual {p0, p1}, Lcom/google/android/gms/internal/mlkit_genai_prompt/zzew;->zzc(I)V
+
+    return-void
+.end method

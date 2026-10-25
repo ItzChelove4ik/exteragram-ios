@@ -1,0 +1,26 @@
+package com.google.zxing.qrcode.detector;
+
+/* loaded from: classes5.dex */
+public final class FinderPatternInfo {
+    private final FinderPattern bottomLeft;
+    private final FinderPattern topLeft;
+    private final FinderPattern topRight;
+
+    public FinderPatternInfo(FinderPattern[] r2) {
+        this.bottomLeft = r2[0];
+        this.topLeft = r2[1];
+        this.topRight = r2[2];
+    }
+
+    public FinderPattern getBottomLeft() {
+        return this.bottomLeft;
+    }
+
+    public FinderPattern getTopLeft() {
+        return this.topLeft;
+    }
+
+    public FinderPattern getTopRight() {
+        return this.topRight;
+    }
+}

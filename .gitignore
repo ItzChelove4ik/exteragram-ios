@@ -3,16 +3,17 @@ build/
 dist/
 out/
 
-# Tools / decompiler work dirs
-tools/jadx*/
-tools/apktool*/
-tools/work/
+# Tools / decompiler work dirs (downloaded binaries not committed; CI downloads them)
+tools/jadx/
+tools/jadx.zip
+tools/apktool.jar
+tools/apktool.log
+tools/jadx.log
+tools/ref-stock/
 *.exe
-*.jar
-!tools/scripts/*
 
-# Decompile temp
-.tmp/
+# Decompile intermediates
+decompiled/diff-vs-stock/
 
 # macOS
 .DS_Store
@@ -21,12 +22,3 @@ tools/work/
 DerivedData/
 xcuserdata/
 *.xcuserstate
-
-# Fastlane
-fastlane/report.xml
-
-# Node
-node_modules/
-
-# LFS caches
-.lfs/

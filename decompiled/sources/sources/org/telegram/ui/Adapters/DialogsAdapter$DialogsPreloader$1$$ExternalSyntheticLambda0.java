@@ -1,0 +1,19 @@
+package org.telegram.ui.Adapters;
+
+import org.telegram.ui.Adapters.DialogsAdapter;
+
+/* loaded from: classes6.dex */
+public final /* synthetic */ class DialogsAdapter$DialogsPreloader$1$$ExternalSyntheticLambda0 implements Runnable {
+    public final /* synthetic */ DialogsAdapter.DialogsPreloader.AnonymousClass1 f$0;
+    public final /* synthetic */ long f$1;
+
+    public /* synthetic */ DialogsAdapter$DialogsPreloader$1$$ExternalSyntheticLambda0(DialogsAdapter.DialogsPreloader.AnonymousClass1 r1, long r2) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        DialogsAdapter.DialogsPreloader.AnonymousClass1.$r8$lambda$T1K2Enj5gBeIg9IrLdt75j8JZgk(this.f$0, this.f$1);
+    }
+}

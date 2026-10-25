@@ -1,0 +1,157 @@
+package com.google.android.gms.internal.clearcut;
+
+import com.google.android.gms.cast.internal.zzar$$ExternalSyntheticBUOutline0;
+import java.nio.ByteBuffer;
+import okio.AsyncTimeout$$ExternalSyntheticBUOutline0;
+
+/* loaded from: classes4.dex */
+abstract class zzff {
+    private static final zzfg zzqb = null;
+
+    static {
+        if (zzfd.zzed() == true) goto L5;
+    L7:
+        zzfg r0 = new zzfh();
+    L8:
+        zzqb = r0;
+        return;
+    L5:
+        if (zzfd.zzee() == false) goto L7;
+        r0 = new zzfj();
+        goto L8
+    }
+
+    public static int zza(CharSequence r9) {
+        int r0 = r9.length();
+        int r2 = 0;
+    L3:
+        if (r2 >= r0) goto L7;
+        if (r9.charAt(r2) >= 128) goto L7;
+        r2 = r2 + 1;
+    L7:
+        int r3 = r0;
+    L8:
+        if (r2 >= r0) goto L28;
+        char r4 = r9.charAt(r2);
+        if (r4 >= 2048) goto L12;
+        r3 = r3 + ((127 - r4) >>> 31);
+        r2 = r2 + 1;
+        goto L8
+    L12:
+        int r42 = r9.length();
+        int r6 = 0;
+    L13:
+        if (r2 >= r42) goto L27;
+        char r7 = r9.charAt(r2);
+        if (r7 >= 2048) goto L17;
+        r6 = r6 + ((127 - r7) >>> 31);
+    L26:
+        r2 = r2 + 1;
+        goto L13
+    L17:
+        r6 = r6 + 2;
+        if (55296 > r7) goto L26;
+        if (r7 > 57343) goto L26;
+        if (Character.codePointAt(r9, r2) < 65536) goto L25;
+        r2 = r2 + 1;
+        goto L26
+    L25:
+        throw new zzfi(r2, r42);
+    L27:
+        r3 = r3 + r6;
+    L28:
+        if (r3 < r0) goto L30;
+        return r3;
+    L30:
+        zzar$$ExternalSyntheticBUOutline0.m(54, "UTF-8 length does not fit in int: ", r3 + 4294967296L);
+        return 0;
+    }
+
+    public static int zza(CharSequence r1, byte[] r2, int r3, int r4) {
+        return zzqb.zzb(r1, r2, r3, r4);
+    }
+
+    public static void zza(CharSequence r4, ByteBuffer r5) {
+        zzfg r0 = zzqb;
+        if (r5.hasArray() == false) goto L7;
+        int r02 = r5.arrayOffset();
+        r5.position(zza(r4, r5.array(), r5.position() + r02, r5.remaining()) - r02);
+        return;
+    L7:
+        if (r5.isDirect() == false) goto L10;
+        r0.zzb(r4, r5);
+        return;
+    L10:
+        zzfg.zzc(r4, r5);
+    }
+
+    private static int zzam(int r1) {
+        if (r1 <= (-12)) goto L6;
+        return -1;
+    L6:
+        return r1;
+    }
+
+    public static /* synthetic */ int zzan(int r0) {
+        return zzam(r0);
+    }
+
+    private static int zzd(int r1, int r2, int r3) {
+        if (r1 <= (-12)) goto L5;
+        return -1;
+    L5:
+        if (r2 > (-65)) goto L12;
+        if (r3 <= (-65)) goto L9;
+        return -1;
+    L9:
+        return (r1 ^ (r2 << 8)) ^ (r3 << 16);
+    L12:
+        return -1;
+    }
+
+    public static /* synthetic */ int zze(int r0, int r1, int r2) {
+        return zzd(r0, r1, r2);
+    }
+
+    public static boolean zze(byte[] r3) {
+        return zzqb.zze(r3, 0, r3.length);
+    }
+
+    public static boolean zze(byte[] r1, int r2, int r3) {
+        return zzqb.zze(r1, r2, r3);
+    }
+
+    private static int zzf(byte[] r3, int r4, int r5) {
+        byte r0 = r3[r4 - 1];
+        int r52 = r5 - r4;
+        if (r52 == 0) goto L15;
+        if (r52 == 1) goto L13;
+        if (r52 == 2) goto L9;
+        AsyncTimeout$$ExternalSyntheticBUOutline0.m();
+        return 0;
+    L9:
+        return zzd(r0, r3[r4], r3[r4 + 1]);
+    L13:
+        return zzp(r0, r3[r4]);
+    L15:
+        return zzam(r0);
+    }
+
+    public static /* synthetic */ int zzg(byte[] r0, int r1, int r2) {
+        return zzf(r0, r1, r2);
+    }
+
+    private static int zzp(int r1, int r2) {
+        if (r1 <= (-12)) goto L5;
+        return -1;
+    L5:
+        if (r2 <= (-65)) goto L8;
+        return -1;
+    L8:
+        return r1 ^ (r2 << 8);
+    }
+
+    public static /* synthetic */ int zzq(int r0, int r1) {
+        return zzp(r0, r1);
+    }
+}

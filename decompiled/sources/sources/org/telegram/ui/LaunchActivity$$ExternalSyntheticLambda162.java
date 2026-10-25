@@ -1,0 +1,134 @@
+package org.telegram.ui;
+
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.TLRPC;
+
+/* loaded from: classes6.dex */
+public final /* synthetic */ class LaunchActivity$$ExternalSyntheticLambda162 implements Runnable {
+    public final /* synthetic */ LaunchActivity f$0;
+    public final /* synthetic */ Long f$1;
+    public final /* synthetic */ String f$10;
+    public final /* synthetic */ String f$11;
+    public final /* synthetic */ String f$12;
+    public final /* synthetic */ String f$13;
+    public final /* synthetic */ String f$14;
+    public final /* synthetic */ String f$15;
+    public final /* synthetic */ String f$16;
+    public final /* synthetic */ boolean f$17;
+    public final /* synthetic */ Integer f$18;
+    public final /* synthetic */ Long f$19;
+    public final /* synthetic */ TLRPC.TL_attachMenuBot f$2;
+    public final /* synthetic */ Long f$20;
+    public final /* synthetic */ Integer f$21;
+    public final /* synthetic */ String f$22;
+    public final /* synthetic */ HashMap f$23;
+    public final /* synthetic */ String f$24;
+    public final /* synthetic */ String f$25;
+    public final /* synthetic */ String f$26;
+    public final /* synthetic */ String f$27;
+    public final /* synthetic */ TLRPC.TL_wallPaper f$28;
+    public final /* synthetic */ String f$29;
+    public final /* synthetic */ AtomicBoolean f$3;
+    public final /* synthetic */ String f$30;
+    public final /* synthetic */ String f$31;
+    public final /* synthetic */ String f$32;
+    public final /* synthetic */ boolean f$33;
+    public final /* synthetic */ String f$34;
+    public final /* synthetic */ int f$35;
+    public final /* synthetic */ int f$36;
+    public final /* synthetic */ String f$37;
+    public final /* synthetic */ String f$38;
+    public final /* synthetic */ String f$39;
+    public final /* synthetic */ int f$4;
+    public final /* synthetic */ String f$40;
+    public final /* synthetic */ String f$41;
+    public final /* synthetic */ Browser.Progress f$42;
+    public final /* synthetic */ boolean f$43;
+    public final /* synthetic */ int f$44;
+    public final /* synthetic */ int f$45;
+    public final /* synthetic */ int f$46;
+    public final /* synthetic */ boolean f$47;
+    public final /* synthetic */ String f$48;
+    public final /* synthetic */ TLRPC.User f$49;
+    public final /* synthetic */ String f$5;
+    public final /* synthetic */ Runnable f$50;
+    public final /* synthetic */ boolean f$51;
+    public final /* synthetic */ boolean f$52;
+    public final /* synthetic */ boolean f$53;
+    public final /* synthetic */ boolean f$54;
+    public final /* synthetic */ boolean f$55;
+    public final /* synthetic */ String f$56;
+    public final /* synthetic */ boolean f$57;
+    public final /* synthetic */ String f$6;
+    public final /* synthetic */ String f$7;
+    public final /* synthetic */ String f$8;
+    public final /* synthetic */ String f$9;
+
+    public /* synthetic */ LaunchActivity$$ExternalSyntheticLambda162(LaunchActivity r1, Long r2, TLRPC.TL_attachMenuBot r3, AtomicBoolean r4, int r5, String r6, String r7, String r8, String r9, String r10, String r11, String r12, String r13, String r14, String r15, String r16, String r17, boolean r18, Integer r19, Long r20, Long r21, Integer r22, String r23, HashMap r24, String r25, String r26, String r27, String r28, TLRPC.TL_wallPaper r29, String r30, String r31, String r32, String r33, boolean r34, String r35, int r36, int r37, String r38, String r39, String r40, String r41, String r42, Browser.Progress r43, boolean r44, int r45, int r46, int r47, boolean r48, String r49, TLRPC.User r50, Runnable r51, boolean r52, boolean r53, boolean r54, boolean r55, boolean r56, String r57, boolean r58) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+        this.f$2 = r3;
+        this.f$3 = r4;
+        this.f$4 = r5;
+        this.f$5 = r6;
+        this.f$6 = r7;
+        this.f$7 = r8;
+        this.f$8 = r9;
+        this.f$9 = r10;
+        this.f$10 = r11;
+        this.f$11 = r12;
+        this.f$12 = r13;
+        this.f$13 = r14;
+        this.f$14 = r15;
+        this.f$15 = r16;
+        this.f$16 = r17;
+        this.f$17 = r18;
+        this.f$18 = r19;
+        this.f$19 = r20;
+        this.f$20 = r21;
+        this.f$21 = r22;
+        this.f$22 = r23;
+        this.f$23 = r24;
+        this.f$24 = r25;
+        this.f$25 = r26;
+        this.f$26 = r27;
+        this.f$27 = r28;
+        this.f$28 = r29;
+        this.f$29 = r30;
+        this.f$30 = r31;
+        this.f$31 = r32;
+        this.f$32 = r33;
+        this.f$33 = r34;
+        this.f$34 = r35;
+        this.f$35 = r36;
+        this.f$36 = r37;
+        this.f$37 = r38;
+        this.f$38 = r39;
+        this.f$39 = r40;
+        this.f$40 = r41;
+        this.f$41 = r42;
+        this.f$42 = r43;
+        this.f$43 = r44;
+        this.f$44 = r45;
+        this.f$45 = r46;
+        this.f$46 = r47;
+        this.f$47 = r48;
+        this.f$48 = r49;
+        this.f$49 = r50;
+        this.f$50 = r51;
+        this.f$51 = r52;
+        this.f$52 = r53;
+        this.f$53 = r54;
+        this.f$54 = r55;
+        this.f$55 = r56;
+        this.f$56 = r57;
+        this.f$57 = r58;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        LaunchActivity.m15626$r8$lambda$ftdKffGPDDdzmb0Ek9zG60sSW0(this.f$0, this.f$1, this.f$2, this.f$3, this.f$4, this.f$5, this.f$6, this.f$7, this.f$8, this.f$9, this.f$10, this.f$11, this.f$12, this.f$13, this.f$14, this.f$15, this.f$16, this.f$17, this.f$18, this.f$19, this.f$20, this.f$21, this.f$22, this.f$23, this.f$24, this.f$25, this.f$26, this.f$27, this.f$28, this.f$29, this.f$30, this.f$31, this.f$32, this.f$33, this.f$34, this.f$35, this.f$36, this.f$37, this.f$38, this.f$39, this.f$40, this.f$41, this.f$42, this.f$43, this.f$44, this.f$45, this.f$46, this.f$47, this.f$48, this.f$49, this.f$50, this.f$51, this.f$52, this.f$53, this.f$54, this.f$55, this.f$56, this.f$57);
+    }
+}

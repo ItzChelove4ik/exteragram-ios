@@ -1,0 +1,19 @@
+package org.telegram.ui.Stars;
+
+import org.telegram.tgnet.TLObject;
+
+/* loaded from: classes7.dex */
+public final /* synthetic */ class StarsController$$ExternalSyntheticLambda54 implements Runnable {
+    public final /* synthetic */ StarsController f$0;
+    public final /* synthetic */ TLObject f$1;
+
+    public /* synthetic */ StarsController$$ExternalSyntheticLambda54(StarsController r1, TLObject r2) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        StarsController.$r8$lambda$xrNbFiW4oXBBye9c7f_zWP1XqeA(this.f$0, this.f$1);
+    }
+}

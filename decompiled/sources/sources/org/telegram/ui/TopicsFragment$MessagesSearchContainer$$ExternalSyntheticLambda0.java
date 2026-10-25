@@ -1,0 +1,19 @@
+package org.telegram.ui;
+
+import android.view.View;
+import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.TopicsFragment;
+
+/* loaded from: classes6.dex */
+public final /* synthetic */ class TopicsFragment$MessagesSearchContainer$$ExternalSyntheticLambda0 implements RecyclerListView.OnItemClickListener {
+    public final /* synthetic */ TopicsFragment.MessagesSearchContainer f$0;
+
+    public /* synthetic */ TopicsFragment$MessagesSearchContainer$$ExternalSyntheticLambda0(TopicsFragment.MessagesSearchContainer r1) {
+        this.f$0 = r1;
+    }
+
+    @Override // org.telegram.ui.Components.RecyclerListView.OnItemClickListener
+    public final void onItemClick(View r1, int r2) {
+        TopicsFragment.MessagesSearchContainer.m20998$r8$lambda$SJ3ef0Na0OSaafUGmpRj6fDwo(this.f$0, r1, r2);
+    }
+}

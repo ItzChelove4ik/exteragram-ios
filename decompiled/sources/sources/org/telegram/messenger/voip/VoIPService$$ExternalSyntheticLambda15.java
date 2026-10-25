@@ -1,0 +1,15 @@
+package org.telegram.messenger.voip;
+
+/* loaded from: classes6.dex */
+public final /* synthetic */ class VoIPService$$ExternalSyntheticLambda15 implements Runnable {
+    public final /* synthetic */ VoIPService f$0;
+
+    public /* synthetic */ VoIPService$$ExternalSyntheticLambda15(VoIPService r1) {
+        this.f$0 = r1;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        VoIPService.m5294$r8$lambda$1UBYe_43GELGdc9ogCao9Gm5gQ(this.f$0);
+    }
+}

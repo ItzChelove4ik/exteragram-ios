@@ -1,0 +1,20 @@
+package androidx.camera.core.impl;
+
+import androidx.camera.core.impl.CameraPresenceProvider;
+import java.util.Set;
+
+/* loaded from: classes3.dex */
+public final /* synthetic */ class CameraPresenceProvider$$ExternalSyntheticLambda0 implements Runnable {
+    public final /* synthetic */ CameraPresenceProvider.ListenerWrapper f$0;
+    public final /* synthetic */ Set f$1;
+
+    public /* synthetic */ CameraPresenceProvider$$ExternalSyntheticLambda0(CameraPresenceProvider.ListenerWrapper r1, Set r2) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        CameraPresenceProvider.$r8$lambda$CMjAF6F7y3XQjKNB_LfwCTl3rzk(this.f$0, this.f$1);
+    }
+}

@@ -1,0 +1,51 @@
+package com.google.android.gms.internal.mlkit_genai_prompt;
+
+/* loaded from: classes4.dex */
+public final class zzjc extends zzawy implements zzaxx {
+    private static final zzjc zzf = null;
+    private int zzb;
+    private int zzd;
+    private int zze;
+
+    static {
+        zzjc r0 = new zzjc();
+        zzf = r0;
+        zzawy.zzN(zzjc.class, r0);
+    }
+
+    private zzjc() {
+    }
+
+    public static /* synthetic */ zzjc zzd() {
+        return zzf;
+    }
+
+    public final int zza() {
+        return this.zzd;
+    }
+
+    @Override // com.google.android.gms.internal.mlkit_genai_prompt.zzawy
+    public final Object zzb(int r1, Object r2, Object r3) {
+        int r12 = r1 - 1;
+        if (r12 == 0) goto L22;
+        if (r12 == 2) goto L20;
+        if (r12 == 3) goto L18;
+        if (r12 == 4) goto L16;
+        if (r12 == 5) goto L13;
+        throw null;
+    L13:
+        return zzf;
+    L16:
+        return new zzjb(null);
+    L18:
+        return new zzjc();
+    L20:
+        return zzawy.zzO(zzf, "\u0004\u0002\u0000\u0001\u0001\u0002\u0002\u0000\u0000\u0000\u0001ဋ\u0000\u0002ဋ\u0001", new Object[]{"zzb", "zzd", "zze"});
+    L22:
+        return (byte) 1;
+    }
+
+    public final int zzc() {
+        return this.zze;
+    }
+}

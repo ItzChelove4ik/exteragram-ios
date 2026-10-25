@@ -1,0 +1,14 @@
+package com.exteragram.messenger.plugins.pip;
+
+import kotlin.jvm.functions.Function1;
+
+/* loaded from: classes4.dex */
+public final /* synthetic */ class PipController$$ExternalSyntheticLambda8 implements Function1 {
+    public /* synthetic */ PipController$$ExternalSyntheticLambda8() {
+    }
+
+    @Override // kotlin.jvm.functions.Function1
+    public final Object invoke(Object r1) {
+        return PipController.m1576$r8$lambda$gKjDvklOC_11lmtswnGXaUHOkM((String) r1);
+    }
+}

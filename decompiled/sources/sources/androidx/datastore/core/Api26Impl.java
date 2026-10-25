@@ -1,0 +1,30 @@
+package androidx.datastore.core;
+
+import j$.io.FileRetargetClass;
+import j$.nio.file.CopyOption;
+import j$.nio.file.Files;
+import j$.nio.file.StandardCopyOption;
+import java.io.File;
+import java.io.IOException;
+import kotlin.Metadata;
+import okhttp3.internal.url._UrlKt;
+
+@Metadata(d1 = {"\u0000\u001a\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\bÃ\u0002\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002J\u0016\u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\u0006¨\u0006\b"}, d2 = {"Landroidx/datastore/core/Api26Impl;", _UrlKt.FRAGMENT_ENCODE_SET, "()V", "move", _UrlKt.FRAGMENT_ENCODE_SET, "srcFile", "Ljava/io/File;", "dstFile", "datastore-core_release"}, k = 1, mv = {1, 8, 0}, xi = 48)
+/* loaded from: classes.dex */
+final class Api26Impl {
+    public static final Api26Impl INSTANCE = null;
+
+    static {
+        INSTANCE = new Api26Impl();
+    }
+
+    private Api26Impl() {
+    }
+
+    public final boolean move(File r4, File r5) {
+        Files.move(FileRetargetClass.toPath(r4), FileRetargetClass.toPath(r5), new CopyOption[]{StandardCopyOption.REPLACE_EXISTING});     // Catch: IOException -> L5
+        return true;
+    L5:
+        return false;
+    }
+}

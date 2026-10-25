@@ -1,0 +1,25 @@
+package org.telegram.ui.Components;
+
+import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
+
+/* loaded from: classes7.dex */
+public final /* synthetic */ class ChatNotificationsPopupWrapper$$ExternalSyntheticLambda17 implements Runnable {
+    public final /* synthetic */ int f$0;
+    public final /* synthetic */ long f$1;
+    public final /* synthetic */ long f$2;
+    public final /* synthetic */ ActionBarMenuSubItem f$3;
+    public final /* synthetic */ ActionBarMenuSubItem f$4;
+
+    public /* synthetic */ ChatNotificationsPopupWrapper$$ExternalSyntheticLambda17(int r1, long r2, long r4, ActionBarMenuSubItem r6, ActionBarMenuSubItem r7) {
+        this.f$0 = r1;
+        this.f$1 = r2;
+        this.f$2 = r4;
+        this.f$3 = r6;
+        this.f$4 = r7;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        ChatNotificationsPopupWrapper.m9952$r8$lambda$jslqYv3H4CQpj7lsolTF0FqDk4(this.f$0, this.f$1, this.f$2, this.f$3, this.f$4);
+    }
+}

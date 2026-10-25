@@ -1,0 +1,38 @@
+package com.google.android.gms.measurement.internal;
+
+import java.util.Objects;
+
+/* loaded from: classes5.dex */
+final class zzna implements Runnable {
+    final /* synthetic */ zzgb zza;
+    final /* synthetic */ zznf zzb;
+
+    public zzna(zznf r1, zzgb r2) {
+        this.zza = r2;
+        Objects.requireNonNull(r1);
+        this.zzb = r1;
+    }
+
+    @Override // java.lang.Runnable
+    public final void run() {
+        zznf r0 = this.zzb;
+        monitor-enter(r0);
+        r0.zzd(false);     // Catch: Throwable -> L8
+        zznl r1 = r0.zza;     // Catch: Throwable -> L8
+        if (r1.zzh() == true) goto L10;
+        r1.zzu.zzaW().zzj().zza("Connected to remote service");     // Catch: Throwable -> L8
+        r1.zzL(this.zza);     // Catch: Throwable -> L8
+    L10:
+        monitor-exit(r0);     // Catch: Throwable -> L8
+        zznl r4 = this.zzb.zza;
+        if (r4.zzab() == null) goto L19;
+        r4.zzab().shutdownNow();
+        r4.zzac(null);
+        return;
+    L19:
+        return;
+    L8:
+        th = move-exception;
+        throw th;
+    }
+}

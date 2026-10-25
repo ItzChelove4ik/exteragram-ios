@@ -1,0 +1,19 @@
+package androidx.media3.session;
+
+import androidx.media3.common.MediaItem;
+import androidx.media3.session.MediaSession;
+import androidx.media3.session.MediaSessionStub;
+
+/* loaded from: classes4.dex */
+public final /* synthetic */ class MediaSessionStub$$ExternalSyntheticLambda50 implements MediaSessionStub.SessionTask {
+    public final /* synthetic */ MediaItem f$0;
+
+    public /* synthetic */ MediaSessionStub$$ExternalSyntheticLambda50(MediaItem r1) {
+        this.f$0 = r1;
+    }
+
+    @Override // androidx.media3.session.MediaSessionStub.SessionTask
+    public final Object run(MediaSessionImpl r1, MediaSession.ControllerInfo r2, int r3) {
+        return MediaSessionStub.m915$r8$lambda$WcLm9AzryeTmodxbW72X4a4o0E(this.f$0, r1, r2, r3);
+    }
+}

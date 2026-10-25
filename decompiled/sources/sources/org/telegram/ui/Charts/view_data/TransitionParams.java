@@ -1,0 +1,22 @@
+package org.telegram.ui.Charts.view_data;
+
+/* loaded from: classes6.dex */
+public class TransitionParams {
+    public float[] angle;
+    public long date;
+    public float[] endX;
+    public float[] endY;
+    public boolean needScaleY;
+    public float pX;
+    public float pY;
+    public float pickerEndOut;
+    public float pickerStartOut;
+    public float progress;
+    public float[] startX;
+    public float[] startY;
+    public float xPercentage;
+
+    public TransitionParams() {
+        this.needScaleY = true;
+    }
+}

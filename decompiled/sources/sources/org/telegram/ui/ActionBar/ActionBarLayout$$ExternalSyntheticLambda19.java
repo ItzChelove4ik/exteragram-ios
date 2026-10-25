@@ -1,0 +1,17 @@
+package org.telegram.ui.ActionBar;
+
+import androidx.dynamicanimation.animation.DynamicAnimation;
+
+/* loaded from: classes6.dex */
+public final /* synthetic */ class ActionBarLayout$$ExternalSyntheticLambda19 implements DynamicAnimation.OnAnimationEndListener {
+    public final /* synthetic */ ActionBarLayout f$0;
+
+    public /* synthetic */ ActionBarLayout$$ExternalSyntheticLambda19(ActionBarLayout r1) {
+        this.f$0 = r1;
+    }
+
+    @Override // androidx.dynamicanimation.animation.DynamicAnimation.OnAnimationEndListener
+    public final void onAnimationEnd(DynamicAnimation r1, boolean r2, float r3, float r4) {
+        ActionBarLayout.m5438$r8$lambda$vUd1HCvvwXoBbJ9aduHiPMw9xs(this.f$0, r1, r2, r3, r4);
+    }
+}
