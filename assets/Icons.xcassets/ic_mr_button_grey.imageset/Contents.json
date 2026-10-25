@@ -1,0 +1,32 @@
+{
+  "images": [
+    {
+      "filename": "ic_mr_button_grey.png",
+      "idiom": "universal",
+      "scale": "1x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "ic_mr_button_grey@2x.png",
+      "idiom": "universal",
+      "scale": "2x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "ic_mr_button_grey@3x.png",
+      "idiom": "universal",
+      "scale": "3x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}

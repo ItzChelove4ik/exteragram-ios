@@ -1,0 +1,32 @@
+{
+  "images": [
+    {
+      "filename": "tooltip_arrow_up.png",
+      "idiom": "universal",
+      "scale": "1x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "tooltip_arrow_up@2x.png",
+      "idiom": "universal",
+      "scale": "2x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "tooltip_arrow_up@3x.png",
+      "idiom": "universal",
+      "scale": "3x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}

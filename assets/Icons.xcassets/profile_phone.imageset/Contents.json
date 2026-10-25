@@ -1,0 +1,32 @@
+{
+  "images": [
+    {
+      "filename": "profile_phone.png",
+      "idiom": "universal",
+      "scale": "1x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "profile_phone@2x.png",
+      "idiom": "universal",
+      "scale": "2x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "profile_phone@3x.png",
+      "idiom": "universal",
+      "scale": "3x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}

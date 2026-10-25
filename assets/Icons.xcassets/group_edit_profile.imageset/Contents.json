@@ -1,0 +1,32 @@
+{
+  "images": [
+    {
+      "filename": "group_edit_profile.png",
+      "idiom": "universal",
+      "scale": "1x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "group_edit_profile@2x.png",
+      "idiom": "universal",
+      "scale": "2x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "group_edit_profile@3x.png",
+      "idiom": "universal",
+      "scale": "3x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}

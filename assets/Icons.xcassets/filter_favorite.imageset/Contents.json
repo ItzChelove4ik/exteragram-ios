@@ -1,0 +1,32 @@
+{
+  "images": [
+    {
+      "filename": "filter_favorite.png",
+      "idiom": "universal",
+      "scale": "1x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "filter_favorite@2x.png",
+      "idiom": "universal",
+      "scale": "2x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    },
+    {
+      "filename": "filter_favorite@3x.png",
+      "idiom": "universal",
+      "scale": "3x",
+      "properties": {
+        "template-rendering-intent": "template"
+      }
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}
