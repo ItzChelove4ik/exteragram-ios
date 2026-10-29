@@ -104,7 +104,7 @@ public final class ExteraAppIconController {
         ExteraAppIcon(id: "aurora", title: "Aurora", info: "Localized entirely in your phone", authorUsername: "exteraGram", authorName: nil, availability: "always", assetName: "ic_launcher_aurora"),
         ExteraAppIcon(id: "osu", title: "osu!", info: nil, authorUsername: "ataeshi", authorName: nil, availability: "always", assetName: "ic_launcher_osu"),
         ExteraAppIcon(id: "google", title: "Google", info: "Don't be evil", authorUsername: "exteraGram", authorName: nil, availability: "always", assetName: "ic_launcher_google"),
-        ExteraAppIcon(id: "google26", title: "Google '26", info: nil, authorUsername: "Slucket", authorName: nil, availability: "always", assetName: "ic_launcher_google26"
+        ExteraAppIcon(id: "google26", title: "Google '26", info: nil, authorUsername: "Slucket", authorName: nil, availability: "always", assetName: "ic_launcher_google26"),
     ]
 
     private static let selectedKey = "extera_selected_app_icon"
