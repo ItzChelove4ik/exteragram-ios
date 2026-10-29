@@ -90,7 +90,7 @@ public final class ExteraAppIconController {
         ExteraAppIcon(id: "invincible", title: "Invincible", info: "Think, Mark!", authorUsername: "exteraGram", authorName: nil, availability: "always", assetName: "ic_launcher_invincible"),
         ExteraAppIcon(id: "flappy", title: "Flappy", info: nil, authorUsername: "nneeuurr", authorName: nil, availability: "always", assetName: "ic_launcher_flappy"),
         ExteraAppIcon(id: "nyan_cat", title: "Nyan Cat", info: nil, authorUsername: "n1ksly", authorName: nil, availability: "always", assetName: "ic_launcher_nyan_cat"),
-        ExteraAppIcon(id: "ice_age", title: "Ice Age", info: ""Where's my acorn?"", authorUsername: "exteraGram", authorName: nil, availability: "always", assetName: "ic_launcher_ice_age"),
+        ExteraAppIcon(id: "ice_age", title: "Ice Age", info: "Where's my acorn?", authorUsername: "exteraGram", authorName: nil, availability: "always", assetName: "ic_launcher_ice_age"),
         ExteraAppIcon(id: "fish", title: "Fish", info: nil, authorUsername: "whatwherewhywhen", authorName: nil, availability: "always", assetName: "ic_launcher_fish"),
         ExteraAppIcon(id: "psychosis", title: "Psychosis", info: nil, authorUsername: "cIick_cIack", authorName: nil, availability: "always", assetName: "ic_launcher_psychosis"),
         ExteraAppIcon(id: "xp", title: "XP", info: nil, authorUsername: "weizoqq", authorName: nil, availability: "always", assetName: "ic_launcher_xp"),
