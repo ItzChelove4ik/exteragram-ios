@@ -11,17 +11,17 @@
 
 import UIKit
 
-public final class ExteraAppIconSelectionController: UIViewController {
+public final class ExteraAppIconSelectionController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     private var collectionView: UICollectionView!
     private let icons: [ExteraAppIcon]
 
-    init() {
+    public init() {
         self.icons = ExteraAppIconController.shared.availableIcons
         super.init(nibName: nil, bundle: nil)
         self.title = ExteraLocaleController.shared.string("AppIcon")
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         self.icons = ExteraAppIconController.shared.availableIcons
         super.init(coder: coder)
     }
@@ -115,7 +115,7 @@ final class ExteraAppIconCell: UICollectionViewCell {
         ])
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
