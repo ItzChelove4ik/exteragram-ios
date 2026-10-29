@@ -32,6 +32,7 @@ jobs:
             ios/ExteraGram/ExteraConfig.swift \
             ios/ExteraGram/ExteraLocaleController.swift \
             ios/ExteraGram/ExteraIconManager.swift \
+            ios/ExteraGram/ExteraAppIconController.swift \
             2>&1 | tee build/swift-parse.log
           echo "parse OK"
 
@@ -45,6 +46,7 @@ jobs:
             ios/ExteraGram/ExteraConfig.swift \
             ios/ExteraGram/ExteraLocaleController.swift \
             ios/ExteraGram/ExteraIconManager.swift \
+            ios/ExteraGram/ExteraAppIconController.swift \
             2>&1 | tee build/swift-typecheck.log
           echo "typecheck OK"
 
