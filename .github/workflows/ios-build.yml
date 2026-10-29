@@ -1,0 +1,81 @@
+name: iOS build check
+
+on:
+  push:
+    paths:
+      - 'ios/ExteraGram/**'
+      - 'tools/scripts/**'
+  workflow_dispatch:
+
+jobs:
+  compile-module:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        shell: bash
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer || true
+
+      - name: Build ExteraGram module (compile check)
+        shell: bash
+        run: |
+          mkdir -p build
+          # Компиляция Swift-файлов модуля: проверка синтаксиса/типов без полного билда
+          # приложения (полный билд telegram-ios требует подписи — см. docs/build.md).
+          set -o pipefail
+          xcrun swiftc -parse \
+            -sdk "$(xcrun --show-sdk-path --sdk iphonesimulator)" \
+            -target arm64-apple-ios16.0-simulator \
+            ios/ExteraGram/ExteraConfig.swift \
+            ios/ExteraGram/ExteraLocaleController.swift \
+            ios/ExteraGram/ExteraIconManager.swift \
+            2>&1 | tee build/swift-parse.log
+          echo "parse OK"
+
+      - name: Type-check module
+        shell: bash
+        run: |
+          set -o pipefail
+          xcrun swiftc -typecheck \
+            -sdk "$(xcrun --show-sdk-path --sdk iphonesimulator)" \
+            -target arm64-apple-ios16.0-simulator \
+            ios/ExteraGram/ExteraConfig.swift \
+            ios/ExteraGram/ExteraLocaleController.swift \
+            ios/ExteraGram/ExteraIconManager.swift \
+            2>&1 | tee build/swift-typecheck.log
+          echo "typecheck OK"
+
+      - name: Validate .strings files
+        shell: bash
+        run: |
+          fail=0
+          for f in ios/ExteraGram/Resources/*.lproj/Extera.strings; do
+            if ! plutil -lint "$f" >/dev/null 2>&1; then
+              echo "INVALID: $f"; fail=1
+            fi
+          done
+          echo "strings lint done (fail=$fail)"
+          exit $fail
+
+      - name: Validate xcassets Contents.json
+        shell: bash
+        run: |
+          fail=0
+          for f in $(find assets/Icons.xcassets assets/AppIcons.xcassets -name Contents.json | head -3000); do
+            if ! plutil -lint "$f" >/dev/null 2>&1; then
+              echo "INVALID: $f"; fail=1
+            fi
+          done
+          echo "xcassets lint done (fail=$fail)"
+          exit $fail
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: swift-build-logs
+          path: build/
+          retention-days: 7
