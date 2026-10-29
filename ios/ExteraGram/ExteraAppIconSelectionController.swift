@@ -15,7 +15,7 @@ public final class ExteraAppIconSelectionController: UIViewController {
     private var collectionView: UICollectionView!
     private let icons: [ExteraAppIcon]
 
-    public init() {
+    init() {
         self.icons = ExteraAppIconController.shared.availableIcons
         super.init(nibName: nil, bundle: nil)
         self.title = ExteraLocaleController.shared.string("AppIcon")
@@ -26,7 +26,7 @@ public final class ExteraAppIconSelectionController: UIViewController {
         super.init(coder: coder)
     }
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = .systemBackground
@@ -49,11 +49,11 @@ public final class ExteraAppIconSelectionController: UIViewController {
 
     // MARK: - DataSource
 
-    @objc public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.icons.count
     }
 
-    @objc public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "icon", for: indexPath) as! ExteraAppIconCell
         let icon = self.icons[indexPath.item]
         cell.configure(
@@ -66,7 +66,7 @@ public final class ExteraAppIconSelectionController: UIViewController {
 
     // MARK: - Delegate
 
-    @objc public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let icon = self.icons[indexPath.item]
         ExteraAppIconController.shared.setIcon(icon) { [weak self] _ in
             self?.collectionView.reloadData()
