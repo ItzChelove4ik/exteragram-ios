@@ -49,11 +49,11 @@ public final class ExteraAppIconSelectionController: UIViewController, UICollect
 
     // MARK: - DataSource
 
-    @objc(collectionView:numberOfItemsInSection:) func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    @objc(collectionView:numberOfItemsInSection:) public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.icons.count
     }
 
-    @objc(collectionView:cellForItemAtIndexPath:) func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    @objc(collectionView:cellForItemAtIndexPath:) public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "icon", for: indexPath) as! ExteraAppIconCell
         let icon = self.icons[indexPath.item]
         cell.configure(
@@ -66,7 +66,7 @@ public final class ExteraAppIconSelectionController: UIViewController, UICollect
 
     // MARK: - Delegate
 
-    @objc(collectionView:didSelectItemAtIndexPath:) func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    @objc(collectionView:didSelectItemAtIndexPath:) public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let icon = self.icons[indexPath.item]
         ExteraAppIconController.shared.setIcon(icon) { [weak self] _ in
             self?.collectionView.reloadData()
