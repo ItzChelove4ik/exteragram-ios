@@ -133,7 +133,7 @@ public final class ExteraLocaleController {
     public static var availableLanguages: [(code: String, name: String)] {
         let module = Bundle(for: ExteraLocaleController.self)
         var result: [(String, String)] = []
-        for (code, _) in [
+        let languages: [(code: String, name: String)] = [
             ("ar", "العربية"), ("az", "Azərbaycan"), ("be", "Беларуская"),
             ("ca", "Català"), ("cs", "Čeština"), ("de", "Deutsch"),
             ("es", "Español"), ("fa", "فارسی"), ("fi", "Suomi"),
@@ -145,9 +145,10 @@ public final class ExteraLocaleController {
             ("ru", "Русский"), ("sk", "Slovenčina"), ("sr", "Српски"),
             ("sv", "Svenska"), ("tr", "Türkçe"), ("uk", "Українська"),
             ("uz", "O‘zbek"), ("zh-Hans", "简体中文"), ("zh-Hant", "繁體中文"),
-        ] {
-            if module.path(forResource: code, ofType: "lproj") != nil {
-                result.append((code, name))
+        ]
+        for entry in languages {
+            if module.path(forResource: entry.code, ofType: "lproj") != nil {
+                result.append((entry.code, entry.name))
             }
         }
         return result
