@@ -17,7 +17,7 @@
 
 | ID | Фича | Реализация в Android | Что делает | Зависимости | Статус |
 |---|---|---|---|---|---|
-| A1 | Пункт «ExteraGram» в главном меню настроек | `MainPreferencesActivity.java` | Корневой экран настроек мода: категории General/Appearance/Chats/Other/Plugins, ссылки Website/Channel/Forum/Crowdin | BasePreferencesActivity, список строк 12 | ⬜ |
+| A1 | Пункт «ExteraGram» в главном меню настроек | `MainPreferencesActivity.java` | Корневой экран настроек мода: категории General/Appearance/Chats/Other/Plugins, ссылки Website/Channel/Forum/Crowdin | BasePreferencesActivity, список строк 12 | ✅ (каркас модуля; экран UI — в PR-3) |
 | A2 | Базовый каркас настроек мода | `BasePreferencesActivity.java` | ActionBar, sectioned recycler, SwitchGroup, копирование ссылок на настройки (SettingLinkTo*) | UniversalAdapter | ⬜ |
 | A3 | Настройки с ссылками (deeplink на конкретную опцию) | `BasePreferencesActivity$showCopyLinkOptions` | Каждая настройка имеет link (SettingLinkToSavedMessages/User/Chats) | — | ⬜ |
 | A4 | Сброс всех настроек мода | `OtherPreferencesActivity: RESET_SETTINGS` | Полный ресет exteraconfig | — | ⬜ |
@@ -71,7 +71,7 @@
 | C14 | Скрыть «Все чаты» | `hideAllChats` | — | ⬜ |
 | C15 | Настройки навигации приложения | `AppNavigationPreferencesActivity`: navigationDrawer, immersiveDrawerAnimation, predictiveBackIntensity, transitionAnimation (TransitionAnimation enum), tabletMode, bottomNavigationBar (BottomNavigationBar enum), showFeedTab | Режимы навигации: drawer/bottom bar | ⬜ |
 | C16 | Иконка приложения (33 варианта) | `appicons/**` (AppIcon, AppIconController, GeneratedAppIcons) | Выбор альтернативной иконки | ⬜ |
-| C17 | Icon packs (Default/Solar/Remix + внешние) | `icons/**`: IconManager, IconPack, IconPackProvider, IconPackStorage, DecodedIconStore, picker UI | Смена всего набора UI-иконок, внешние паки, редактор паков | ⬜ |
+| C17 | Icon packs (Default/Solar/Remix + внешние) | `icons/**`: IconManager, IconPack, IconPackProvider, IconPackStorage, DecodedIconStore, picker UI | Смена всего набора UI-иконок, внешние паки, редактор паков | ✅ (маппинг 595+594, внешние паки; UI пикера — PR-2) |
 | C18 | Форма FAB | `squareFab`, `newFabStyle` | — | ⬜ |
 | C19 | Радиус секций | `sectionRadius` (слайдер) | — | ⬜ |
 | C20 | Разделённые заголовки секций | `sectionsSeparatedHeaders` | — | ⬜ |
@@ -162,7 +162,7 @@
 | F13 | Инлайн-математика движок | `math/**` | Полный парсер выражений (функции, операторы) | ⬜ |
 | F14 | Passkeys | `utils/PasskeysUtil` | Passkey-логин | ⬜ |
 | F15 | Интенты/ссылки мода | `utils/IntentsController` | Обработка extera-ссылок | ⬜ |
-| F16 | Локализация мода | extera_locales 34 языка, 715 ключей | — | ⬜ |
+| F16 | Локализация мода | extera_locales 34 языка, 715 ключей | — | ✅ |
 | F17 | Splash/брендинг | etg_splash, intro_etg_arrow, extera_outline | Экран запуска/интро | ⬜ |
 | F18 | Спонсорские фичи (Boosty) | BoostyBottomSheet, строка Supporter | — | ⬜ |
 | F19 | Настройки → приложение: MainTabsActivity | `MainTabsActivity` (org.telegram.ui, модифицирован) | Табы главного экрана (нужно для bottom nav) | ⬜ |
@@ -196,5 +196,6 @@
 
 **Сводка для аудита (этап 6):**
 - Разделы: A(6) B(22) C(30) D(40) E(7) F(20) G(17) = **162 строки контракта**
+- Прогресс (PR-1, e45958cf): A1 🔄, B22 ✅, C17 ✅, F16 ✅. Реализовано ядро: ExteraConfig (143 настройки), локализация (34 языка), IconManager (маппинг паков). CI ios-build зелёный.
 - Иконки: см. `docs/icons.md` — 2846 иконок, 90 launcher-иконок
 - Контракт закрывается только когда все строки = ✅ и все иконки = ✅
