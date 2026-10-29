@@ -63,14 +63,22 @@ jobs:
       - name: Validate xcassets Contents.json
         shell: bash
         run: |
-          fail=0
-          for f in $(find assets/Icons.xcassets assets/AppIcons.xcassets -name Contents.json | head -3000); do
-            if ! plutil -lint "$f" >/dev/null 2>&1; then
-              echo "INVALID: $f"; fail=1
-            fi
-          done
-          echo "xcassets lint done (fail=$fail)"
-          exit $fail
+          python3 - <<'EOF'
+          import json, os, sys
+          bad = []
+          for base in ('assets/Icons.xcassets', 'assets/AppIcons.xcassets'):
+              for root, dirs, files in os.walk(base):
+                  if 'Contents.json' in files:
+                      p = os.path.join(root, 'Contents.json')
+                      try:
+                          json.loads(open(p, 'rb').read().decode('utf-8-sig'))
+                      except Exception as e:
+                          bad.append((p, str(e)))
+          for p, e in bad[:20]:
+              print('INVALID:', p, e)
+          print('checked Contents.json: OK' if not bad else f'FAILED: {len(bad)}')
+          sys.exit(1 if bad else 0)
+          EOF
 
       - name: Upload logs
         if: always()
