@@ -187,9 +187,9 @@ public final class ExteraMathExpression {
         var tokens: [Token] = []
         let chars = Array(text.unicodeScalars)
         var i = 0
-        let allSymbols = infix.flatMap { $0.symbols }
-            + prefix.flatMap { $0.symbols }
-            + postfix.flatMap { $0.symbols }
+        let allSymbols = Self.infix.flatMap { $0.symbols }
+            + Self.prefix.flatMap { $0.symbols }
+            + Self.postfix.flatMap { $0.symbols }
             + ["(", ")", ","]
         let sortedSymbols = allSymbols.sorted { $0.count > $1.count }
 
