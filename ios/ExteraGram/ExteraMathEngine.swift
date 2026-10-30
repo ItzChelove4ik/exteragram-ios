@@ -188,9 +188,9 @@ public final class ExteraMathExpression {
         let chars = Array(text.unicodeScalars)
         var i = 0
         var allSymbols: [String] = ["(", ")", ","]
-        for op in Self.infix { allSymbols.append(contentsOf: op.symbols) }
-        for op in Self.prefix { allSymbols.append(contentsOf: op.symbols) }
-        for op in Self.postfix { allSymbols.append(contentsOf: op.symbols) }
+        for op in ExteraMathOperators.infix { allSymbols.append(contentsOf: op.symbols) }
+        for op in ExteraMathOperators.prefix { allSymbols.append(contentsOf: op.symbols) }
+        for op in ExteraMathOperators.postfix { allSymbols.append(contentsOf: op.symbols) }
         let sortedSymbols = allSymbols.sorted { $0.count > $1.count }
 
         while i < chars.count {
