@@ -58,4 +58,7 @@ python3 tools/scripts/patch-no-extensions.py
 # 8. Патч: фиктивный provisioning profile (rules_apple требует не-None профиль)
 python3 tools/scripts/patch-fake-profile.py
 
+# 9. Патч: iOS 27.1-API guard под Xcode 26 CI-раннера
+python3 tools/scripts/patch-xcode26-compat.py
+
 echo "ExteraGram module integrated."
