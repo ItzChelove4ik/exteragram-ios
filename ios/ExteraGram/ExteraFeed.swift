@@ -93,7 +93,11 @@ public final class ExteraFeedConfig {
     /// Порт generation: инкремент при каждом изменении (для инвалидации кэшей)
     public var generation: Int {
         get { return self.defaults.integer(forKey: "generation") }
-        private set { self.defaults.set(newValue, forKey: "generation") }
+    }
+
+    /// Инкремент generation (внутренний)
+    func bumpGeneration() {
+        self.generation += 1
     }
 
     // MARK: Изменения (порт applyExcluded/removeExcluded/setExcluded/clearExcluded)
@@ -123,7 +127,7 @@ public final class ExteraFeedConfig {
     }
 
     private func bump() {
-        self.generation += 1
+        self.bumpGeneration()
         NotificationCenter.default.post(name: Notification.Name("ExteraFeedChanged"), object: nil)
     }
 }
