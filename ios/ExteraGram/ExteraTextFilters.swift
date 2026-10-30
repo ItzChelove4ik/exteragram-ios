@@ -37,12 +37,12 @@ public enum ExteraZalgoFilter {
     /// combining marks (Unicode.category Mn/Mc), 0 для остальных
     private static func allowedMarksPerSequence(_ scalar: Unicode.Scalar) -> Int {
         let cp = scalar.value
-        guard cp >= 768 else { return 0 }
+        guard Int(cp) >= 768 else { return 0 }
         // Character.getType == 6 (NON_SPACING_MARK) / 7 (COMBINING_SPACING_MARK)
         // в Swift: Unicode.Scalar.Properties.generalCategory == .nonspacingMark / .spacingMark
         let gc = scalar.properties.generalCategory
         guard gc == .nonspacingMark || gc == .spacingMark else { return 0 }
-        return isZalgoMarkRange(cp) ? 2 : 4
+        return isZalgoMarkRange(Int(cp)) ? 2 : 4
     }
 
     /// Порт findReplacementRanges: диапазоны [start, end) для замены
