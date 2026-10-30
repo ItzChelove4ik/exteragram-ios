@@ -90,6 +90,7 @@ jobs:
             --configuration="${{ inputs.configuration || 'release_arm64' }}" \
             --xcodeManagedCodesigning \
             --bazelArguments="--//Telegram:disableProvisioningProfiles" \
+            --bazelArguments="--//Telegram:disableProvisioningProfiles" \
             --buildNumber=1 \
             --outputBuildArtifactsPath="$GITHUB_WORKSPACE/build-artifacts"
         timeout-minutes: 300
