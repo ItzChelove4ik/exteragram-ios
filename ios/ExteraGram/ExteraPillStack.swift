@@ -227,7 +227,9 @@ public final class ExteraCachePill: ExteraPill {
     }
 
     static func cacheSize() -> Int64 {
-        let dirs = FileManager.default.urls(for: [.cachesDirectory, .documentDirectory], in: .userDomainMask)
+        var dirs: [URL] = []
+        dirs.append(contentsOf: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask))
+        dirs.append(contentsOf: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         var total: Int64 = 0
         for dir in dirs {
             guard let enumerator = FileManager.default.enumerator(at: dir, includingPropertiesForKeys: [.fileSizeKey]) else { continue }
