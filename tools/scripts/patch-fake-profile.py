@@ -81,6 +81,12 @@ content = '''<?xml version="1.0" encoding="UTF-8"?>
 \t\t<string>development</string>
 \t\t<key>get-task-allow</key>
 \t\t<true/>
+\t\t<key>com.apple.security.application-groups</key>
+\t\t<array>
+\t\t\t<string>group.app.exteragram.sideloading</string>
+\t\t</array>
+\t\t<key>com.apple.developer.team-identifier</key>
+\t\t<string></string>
 \t</dict>
 \t<key>ExpirationDate</key>
 \t<date>2036-10-30T00:00:00Z</date>
