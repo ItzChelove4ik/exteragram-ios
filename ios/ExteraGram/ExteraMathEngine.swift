@@ -187,10 +187,10 @@ public final class ExteraMathExpression {
         var tokens: [Token] = []
         let chars = Array(text.unicodeScalars)
         var i = 0
-        let allSymbols = Self.infix.flatMap { $0.symbols }
-            + Self.prefix.flatMap { $0.symbols }
-            + Self.postfix.flatMap { $0.symbols }
-            + ["(", ")", ","]
+        var allSymbols: [String] = ["(", ")", ","]
+        for op in Self.infix { allSymbols.append(contentsOf: op.symbols) }
+        for op in Self.prefix { allSymbols.append(contentsOf: op.symbols) }
+        for op in Self.postfix { allSymbols.append(contentsOf: op.symbols) }
         let sortedSymbols = allSymbols.sorted { $0.count > $1.count }
 
         while i < chars.count {
