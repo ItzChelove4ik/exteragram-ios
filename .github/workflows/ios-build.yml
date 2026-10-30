@@ -34,6 +34,8 @@ jobs:
             ios/ExteraGram/ExteraIconManager.swift \
             ios/ExteraGram/ExteraAppIconController.swift \
             ios/ExteraGram/ExteraAppIconSelectionController.swift \
+            ios/ExteraGram/ExteraTextFilters.swift \
+            ios/ExteraGram/ExteraUiHelpers.swift \
             2>&1 | tee build/swift-parse.log
           echo "parse OK"
 
@@ -49,6 +51,8 @@ jobs:
             ios/ExteraGram/ExteraIconManager.swift \
             ios/ExteraGram/ExteraAppIconController.swift \
             ios/ExteraGram/ExteraAppIconSelectionController.swift \
+            ios/ExteraGram/ExteraTextFilters.swift \
+            ios/ExteraGram/ExteraUiHelpers.swift \
             2>&1 | tee build/swift-typecheck.log
           echo "typecheck OK"
 
