@@ -41,6 +41,10 @@ jobs:
             ios/ExteraGram/ExteraApiClient.swift \
             ios/ExteraGram/ExteraSubsystemModules.swift \
             ios/ExteraGram/ExteraPillStack.swift \
+            ios/ExteraGram/ExteraFeed.swift \
+            ios/ExteraGram/ExteraDrawer.swift \
+            ios/ExteraGram/ExteraAiController.swift \
+            ios/ExteraGram/ExteraPluginEngine.swift \
             2>&1 | tee build/swift-parse.log
           echo "parse OK"
 
@@ -63,6 +67,10 @@ jobs:
             ios/ExteraGram/ExteraApiClient.swift \
             ios/ExteraGram/ExteraSubsystemModules.swift \
             ios/ExteraGram/ExteraPillStack.swift \
+            ios/ExteraGram/ExteraFeed.swift \
+            ios/ExteraGram/ExteraDrawer.swift \
+            ios/ExteraGram/ExteraAiController.swift \
+            ios/ExteraGram/ExteraPluginEngine.swift \
             2>&1 | tee build/swift-typecheck.log
           echo "typecheck OK"
 
