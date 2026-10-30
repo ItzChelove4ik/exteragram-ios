@@ -87,6 +87,7 @@ jobs:
           # SideLoadly подпишет ipa своим Apple ID при установке
           python3 build-system/Make/Make.py \
             --bazelArguments="--//Telegram:disableProvisioningProfiles" \
+            --overrideXcodeVersion \
             build \
             --configurationPath="$GITHUB_WORKSPACE/ios/configuration/sideload-configuration.json" \
             --configuration="${{ inputs.configuration || 'release_arm64' }}" \
