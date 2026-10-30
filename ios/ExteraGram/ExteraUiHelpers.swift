@@ -280,8 +280,9 @@ public enum ExteraGlass {
             glare.startPoint = CGPoint(x: 0.2, y: 0)
             glare.endPoint = CGPoint(x: 0.8, y: 1)
             glare.frame = view.bounds
-            glare.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
             view.layer.addSublayer(glare)
+            // ресайз через KVO-наблюдатель (CALayer.autoresizingMask недоступен на iOS)
+            glareObserver(view: view, glare: glare)
         }
         return view
     }
@@ -312,6 +313,29 @@ public enum ExteraStickerTime {
         case .never: return false
         case .default: return false // сток: не показывает
         @unknown default: return false
+        }
+    }
+
+    private static func glareObserver(view: UIView, glare: CAGradientLayer) {
+        // наблюдение за изменением bounds — обновление frame блика
+        let observer = ExteraBoundsObserver(layer: glare)
+        observer.observe(view: view)
+        objc_setAssociatedObject(view, &ExteraBoundsObserver.associationKey, observer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+}
+
+private final class ExteraBoundsObserver: NSObject {
+    static var associationKey: UInt8 = 0
+    private weak var layer: CALayer?
+    private var observation: NSKeyValueObservation?
+
+    init(layer: CALayer) {
+        self.layer = layer
+    }
+
+    func observe(view: UIView) {
+        self.observation = view.observe(\.bounds, options: [.initial, .new]) { [weak self] v, _ in
+            self?.layer?.frame = v.bounds
         }
     }
 }
