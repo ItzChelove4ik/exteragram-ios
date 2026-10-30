@@ -70,7 +70,7 @@
 | C13 | Счётчик табов | `tabCounterMode` (all/unmuted) | — | ⬜ |
 | C14 | Скрыть «Все чаты» | `hideAllChats` | — | ⬜ |
 | C15 | Настройки навигации приложения | `AppNavigationPreferencesActivity`: navigationDrawer, immersiveDrawerAnimation, predictiveBackIntensity, transitionAnimation (TransitionAnimation enum), tabletMode, bottomNavigationBar (BottomNavigationBar enum), showFeedTab | Режимы навигации: drawer/bottom bar | ⬜ |
-| C16 | Иконка приложения (33 варианта) | `appicons/**` (AppIcon, AppIconController, GeneratedAppIcons) | Выбор альтернативной иконки | ⬜ |
+| C16 | Иконка приложения (33 варианта) | `appicons/**` (AppIcon, AppIconController, GeneratedAppIcons) | Выбор альтернативной иконки | ✅ (ExteraAppIconController + UI выбора + 31 alternate icon в бандле) |
 | C17 | Icon packs (Default/Solar/Remix + внешние) | `icons/**`: IconManager, IconPack, IconPackProvider, IconPackStorage, DecodedIconStore, picker UI | Смена всего набора UI-иконок, внешние паки, редактор паков | ✅ (маппинг 595+594, внешние паки; UI пикера — PR-2) |
 | C18 | Форма FAB | `squareFab`, `newFabStyle` | — | ⬜ |
 | C19 | Радиус секций | `sectionRadius` (слайдер) | — | ⬜ |
@@ -196,6 +196,6 @@
 
 **Сводка для аудита (этап 6):**
 - Разделы: A(6) B(22) C(30) D(40) E(7) F(20) G(17) = **162 строки контракта**
-- Прогресс (PR-1, e45958cf): A1 🔄, B22 ✅, C17 ✅, F16 ✅. Реализовано ядро: ExteraConfig (143 настройки), локализация (34 языка), IconManager (маппинг паков). CI ios-build зелёный.
+- Прогресс (PR-1 5a2eba8): A1 🔄, B22 ✅, C17 ✅, F16 ✅, C16 ✅. Ядро: ExteraConfig (143 настройки), 34 локали, IconManager (595+594), 32 иконки приложения (порт appicons/**, monet скомпозирован из vector), UI выбора, CFBundleAlternateIcons. CI ios-build зелёный.
 - Иконки: см. `docs/icons.md` — 2846 иконок, 90 launcher-иконок
 - Контракт закрывается только когда все строки = ✅ и все иконки = ✅
