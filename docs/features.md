@@ -33,19 +33,19 @@
 | B3 | Скрыть папку Архив | `hideArchiveFolder` | Скрытие архивной папки | ⬜ |
 | B4 | Архив по свайпу вниз | `archiveOnPull` | Pull-to-archive в списке чатов | ⬜ |
 | B5 | Отключить свайп разархивации | `disableUnarchiveSwipe` | — | ⬜ |
-| B6 | Прокси: не использовать (VPN/mobile/wifi) | `doNotUseProxy` + `ProxyDisableCondition`, `proxy/ProxyController`, `IpAddressInfoController` | Условия отключения прокси + IP info + пин лимит + переименование прокси | ⬜ |
+| B6 | Прокси: не использовать (VPN/mobile/wifi) | `doNotUseProxy` + `ProxyDisableCondition`, `proxy/ProxyController`, `IpAddressInfoController` | Условия отключения прокси + IP info + пин лимит + переименование прокси | ✅ (ExteraProxyController — VPN/cellular/wifi + IpInfo) |
 | B7 | Свой путь сохранения | `customSavePath` | Кастомная папка загрузок | ⬜ |
 | B8 | Не помечать чаты как новые | `doNotMarkAsNew` | Список чатов | ⬜ |
-| B9 | Отключить округление чисел | `disableNumberRounding` | 1234 вместо 1.2K | ⬜ |
-| B10 | Формат времени с секундами | `formatTimeWithSeconds` + formatterDay24HSec/12HSec | — | ⬜ |
-| B11 | Относительное «был(а) недавно» | `relativeLastSeen` | — | ⬜ |
+| B9 | Отключить округление чисел | `disableNumberRounding` | 1234 вместо 1.2K | ✅ (ExteraNumberFormatter) |
+| B10 | Формат времени с секундами | `formatTimeWithSeconds` + formatterDay24HSec/12HSec | — | ✅ (ExteraTimeFormat) |
+| B11 | Относительное «был(а) недавно» | `relativeLastSeen` | — | ✅ (ExteraRelativeLastSeen) |
 | B12 | Вибрация в приложении | `inAppVibration` | — | ⬜ |
 | B13 | Отключить задержку уведомлений | `disableNotificationDelay` | — | ⬜ |
-| B14 | Фильтр zalgo-текста | `filterZalgo` + `utils/text/ZalgoFilter` | — | ⬜ |
+| B14 | Фильтр zalgo-текста | `filterZalgo` + `utils/text/ZalgoFilter` | — | ✅ (ExteraTextFilters — полный порт ZalgoFilter.kt) |
 | B15 | Буст скорости скачивания | `downloadSpeedBoost` | Увеличение параллельных коннектов | ⬜ |
 | B16 | Буст скорости загрузки | `uploadSpeedBoost` | — | ⬜ |
-| B17 | Переводчик: провайдеры | `translationProvider` + `translator/TranslationProviders`, `ChatTranslator` | DeepL, Google, Libre, Lingva… (см. G-переводчик) | ⬜ |
-| B18 | Переводчик: целевой язык / не переводить языки | `targetLang` + DoNotTranslateLanguages | — | ⬜ |
+| B17 | Переводчик: провайдеры | `translationProvider` + `translator/TranslationProviders`, `ChatTranslator` | DeepL, Google, Libre, Lingva… (см. G-переводчик) | ✅ (ExteraTranslationProviders — 4 провайдера) |
+| B18 | Переводчик: целевой язык / не переводить языки | `targetLang` + DoNotTranslateLanguages | — | ✅ (ExteraTranslatorUtils) |
 | B19 | Кнопка перевода сообщения/чата | ShowTranslateButton/ShowTranslateChatButton | — | ⬜ |
 | B20 | Аккаунтные уведомления | `notifications/AccountNotifications(+Activity)` | Раздельные уведомления по аккаунтам | ⬜ |
 | B21 | Уведомление о новых фичах мода | `newFeaturesShowedAt` + фичи What's New | — | ⬜ |
@@ -55,7 +55,7 @@
 
 | ID | Фича | Реализация | Что делает | Статус |
 |---|---|---|---|---|
-| C1 | Скругление аватаров | `avatarCorners` (0–100%) + `AvatarCornerType` (DEFAULT/FORUM/COMMUNITY), getAvatarCorners | Слайдер формы аватаров | ⬜ |
+| C1 | Скругление аватаров | `avatarCorners` (0–100%) + `AvatarCornerType` (DEFAULT/FORUM/COMMUNITY), getAvatarCorners | Слайдер формы аватаров | ✅ (ExteraAvatarCorners) |
 | C2 | Единый радиус углов | `singleCornerRadius` | — | ⬜ |
 | C3 | Снежинки принудительно | `forceSnow` | — | ⬜ |
 | C4 | Скрыть статус в ActionBar | `hideActionBarStatus` | — | ⬜ |
@@ -65,26 +65,26 @@
 | C8 | Скрыть панель поиска чатов | `hideDialogsSearchBar` | — | ⬜ |
 | C9 | Мини-аватары отправителей | `senderMiniAvatars` | — | ⬜ |
 | C10 | Заголовок ActionBar (имя/юзернейм) | `titleText` | — | ⬜ |
-| C11 | Pill Stack (пилюли-виджеты) | `pillstack/**`: WeatherPill, CryptoPill (BTC/USD/GRAM/Rate), CachePill, ProxyPill + настройки | Стек интерактивных виджетов над списком чатов | ⬜ |
+| C11 | Pill Stack (пилюли-виджеты) | `pillstack/**`: WeatherPill, CryptoPill (BTC/USD/GRAM/Rate), CachePill, ProxyPill + настройки | Стек интерактивных виджетов над списком чатов | ✅ (ExteraPillStack — все 4 пилюли) |
 | C12 | Название папок/табов | `tabIcons` (TabIconsMode: titles/icons/both) | — | ⬜ |
 | C13 | Счётчик табов | `tabCounterMode` (all/unmuted) | — | ⬜ |
 | C14 | Скрыть «Все чаты» | `hideAllChats` | — | ⬜ |
 | C15 | Настройки навигации приложения | `AppNavigationPreferencesActivity`: navigationDrawer, immersiveDrawerAnimation, predictiveBackIntensity, transitionAnimation (TransitionAnimation enum), tabletMode, bottomNavigationBar (BottomNavigationBar enum), showFeedTab | Режимы навигации: drawer/bottom bar | ⬜ |
 | C16 | Иконка приложения (33 варианта) | `appicons/**` (AppIcon, AppIconController, GeneratedAppIcons) | Выбор альтернативной иконки | ✅ (ExteraAppIconController + UI выбора + 31 alternate icon в бандле) |
 | C17 | Icon packs (Default/Solar/Remix + внешние) | `icons/**`: IconManager, IconPack, IconPackProvider, IconPackStorage, DecodedIconStore, picker UI | Смена всего набора UI-иконок, внешние паки, редактор паков | ✅ (маппинг 595+594, внешние паки; UI пикера — PR-2) |
-| C18 | Форма FAB | `squareFab`, `newFabStyle` | — | ⬜ |
-| C19 | Радиус секций | `sectionRadius` (слайдер) | — | ⬜ |
-| C20 | Разделённые заголовки секций | `sectionsSeparatedHeaders` | — | ⬜ |
-| C21 | Стиль разделителя | `dividerStyle` (DividerStyle enum) | — | ⬜ |
-| C22 | MD3-стили контролов | newLoadingStyle, newSliderStyle, newSwitchStyle, newChatHeaderStyle, newNavigationBarStyle | Материальные стили контролов | ⬜ |
+| C18 | Форма FAB | `squareFab`, `newFabStyle` | — | ✅ (ExteraFabUiHelper) |
+| C19 | Радиус секций | `sectionRadius` (слайдер) | — | ✅ (ExteraSectionStyle) |
+| C20 | Разделённые заголовки секций | `sectionsSeparatedHeaders` | — | ✅ |
+| C21 | Стиль разделителя | `dividerStyle` (DividerStyle enum) | — | ✅ (ExteraDividerHelper) |
+| C22 | MD3-стили контролов | newLoadingStyle, newSliderStyle, newSwitchStyle, newChatHeaderStyle, newNavigationBarStyle | Материальные стили контролов | ✅ (Switch/Slider UiHelpers) |
 | C23 | Системные шрифты | `useSystemFonts` + `utils/ui/FontUtils` | — | ⬜ |
 | C24 | Системные эмодзи | SharedConfig-мод (USE_SYSTEM_EMOJI) | — | ⬜ |
 | C25 | Gooey-анимация аватаров | `gooeyAvatarAnimation` | — | ⬜ |
 | C26 | Кастомные темы | `customThemes` + attheme-файлы в assets (arctic, bluebubbles, darkblue…) | Поддержка .attheme | ⬜ |
 | C27 | Glass outline стиль | `glassOutlineStyle` (GlassOutlineStyle enum: GLARE и др.) | — | ⬜ |
-| C28 | Принудительный blur | `forceBlur` | Blur на всех устройствах | ⬜ |
-| C29 | Стеклянное меню сообщений | `glassMessageMenu` + `utils/chats/GlassMenuHelper` | — | ⬜ |
-| C30 | Углы стикеров | `stickerShape` (none/small/medium/large) | — | ⬜ |
+| C28 | Принудительный blur | `forceBlur` | Blur на всех устройствах | ✅ (ExteraGlass) |
+| C29 | Стеклянное меню сообщений | `glassMessageMenu` + `utils/chats/GlassMenuHelper` | — | ✅ (ExteraGlass.glassMessageMenu) |
+| C30 | Углы стикеров | `stickerShape` (none/small/medium/large) | — | ✅ (ExteraStickerShape) |
 
 ## D. Chats (ChatsPreferencesActivity — 60+ пунктов)
 
@@ -98,13 +98,13 @@
 | D6 | Быстрые админ-шорткаты | `quickAdminShortcuts` | — | ⬜ |
 | D7 | Быстрые переходы (каналы/топики) | `quickTransitionForChannels/Topics` | — | ⬜ |
 | D8 | Размер стикеров | `stickerSize` (слайдер 8–20) | — | ⬜ |
-| D9 | Время у стикеров | `stickerTimeMode` (StickerTimeMode) | — | ⬜ |
+| D9 | Время у стикеров | `stickerTimeMode` (StickerTimeMode) | — | ✅ (ExteraStickerTime) |
 | D10 | Элементы ответа (reply) | `replyColors`, `replyEmoji`, `replyBackground` + BlendedReply*Span | Кастомизация reply-полосы | ⬜ |
 | D11 | Безлимитные недавние стикеры | `unlimitedRecentStickers` | — | ⬜ |
 | D12 | Скрыть реакции (лс/каналы/группы) | `hideReactionsIn*` | — | ⬜ |
 | D13 | Скрыть клавиатуру при скролле | `hideKeyboardOnScroll` | — | ⬜ |
 | D14 | Запятая после упоминания | `addCommaAfterMention` | — | ⬜ |
-| D15 | Инлайн-математика | `inlineMathResult` + `math/**` (MathExpression, операторы, функции, GhostTextLayout, MathRevealAnimation) | Вычисление формул в поле ввода с превью | ⬜ |
+| D15 | Инлайн-математика | `inlineMathResult` + `math/**` (MathExpression, операторы, функции, GhostTextLayout, MathRevealAnimation) | Вычисление формул в поле ввода с превью | ✅ (ExteraMathEngine — полный порт math/**) |
 | D16 | Отключить Markdown | `disableMarkdown` + `utils/MarkdownUtils` | — | ⬜ |
 | D17 | Скрыть «Отправить как» | `hideSendAsPeer` | — | ⬜ |
 | D18 | Убрать хвост сообщений | `removeMessageTail` | — | ⬜ |
@@ -118,7 +118,7 @@
 | D26 | Повтор сообщения | Repeat | — | ⬜ |
 | D27 | История сообщений (Message History) | showHistoryButton + MessageHistory UI (стоковая фича, включённая модом) | — | ⬜ |
 | D28 | Детали сообщения | showDetailsButton + `components/MessageDetailsPopupWrapper` (Sent from, resolution, bitrate, datacenter, file path…) | — | ⬜ |
-| D29 | Распознавание голосовых | `speech/**` VoiceRecognitionController (Vosk + др. recognizers), recognitionLanguage, deleteModel | Скачивание модели, транскрипция | ⬜ |
+| D29 | Распознавание голосовых | `speech/**` VoiceRecognitionController (Vosk + др. recognizers), recognitionLanguage, deleteModel | Скачивание модели, транскрипция | ✅ (ExteraVoiceRecognitionController — SFSpeechRecognizer) |
 | D30 | Постобработка AI | `postprocessingWithAi` | — | ⬜ |
 | D31 | Настройки камеры | cameraType (CAMERA_X/CAMERA2), extendedFramesPerSecond, cameraStabilization, cameraMirrorMode, videoMessagesCamera, rememberLastUsedCamera, startWithWideAngleCamera, zoomSlider + `camera/CameraZoomSliderView`, staticZoom, alwaysSendInHD, hideCameraTile, doubleTapSeekDuration, preferOriginalQuality, `camera/CameraXSession`, RoundVideoEncoder, CameraLensStops | Расширенные настройки камеры/видео | ⬜ |
 | D32 | Пауза при минимизации (video/voice/round) | `pauseOnMinimize*` | — | ⬜ |
@@ -137,7 +137,7 @@
 |---|---|---|---|---|
 | E1 | Google Crashlytics вкл/выкл | `useGoogleCrashlytics` | Опциональная телеметрия | ⬜ |
 | E2 | Google Analytics вкл/выкл | `useGoogleAnalytics` | — | ⬜ |
-| E3 | Рекламный блокировщик | `enableAdBlock` + `adblock/**` (AdBlockClient, WebAdBlocker, фильтры, UI) | Блокировка рекламы в web-вью (счётчик BlockedRequests) | ⬜ |
+| E3 | Рекламный блокировщик | `enableAdBlock` + `adblock/**` (AdBlockClient, WebAdBlocker, фильтры, UI) | Блокировка рекламы в web-вью (счётчик BlockedRequests) | ✅ (ExteraAdBlock) |
 | E4 | Donate / Boosty | BoostyBottomSheet, SupporterBottomSheet | Поддержка разработки | ⬜ |
 | E5 | Удаление аккаунта | DELETE_ACCOUNT (стоковое, в меню мода) | — | ⬜ |
 | E6 | Тестовый backend | TestBackend | — | ⬜ |
@@ -151,13 +151,13 @@
 | F2 | Drawer (боковое меню) | `drawer/**`: DrawerContainer, DrawerMenuView, HeaderView, AccountPickerView, unread badges | Navigation drawer c аккаунтами | ⬜ |
 | F3 | Main menu настройки | `mainMenuLayout/HiddenItems` + MainMenuItem enum + MainMenuHelper | Редактор главного меню | ⬜ |
 | F4 | Переводчик (полный) | `translator/**`: ChatTranslator, TranslationProviders (DeepL/Google/Lingva/Libre…), ChatTranslationBridge | Перевод сообщений/чата | ⬜ |
-| F5 | Регдата (дата регистрации) | `regdate/RegDateController` + registration_dates.bin | Дата регистрации аккаунта в профиле | ⬜ |
-| F6 | Now Playing / scrobbling | `nowplaying/NowPlayingController`, ServiceEmoji | Статус «слушает» + эмодзи-сервисы | ⬜ |
+| F5 | Регдата (дата регистрации) | `regdate/RegDateController` + registration_dates.bin | Дата регистрации аккаунта в профиле | ✅ (ExteraRegDateController — декодер InvisibleEncryptor) |
+| F6 | Now Playing / scrobbling | `nowplaying/NowPlayingController`, ServiceEmoji | Статус «слушает» + эмодзи-сервисы | ✅ (ExteraNowPlayingController) |
 | F7 | Плагины (Python!) | `plugins/**`: PluginsController, PythonPluginsEngine, hooks, models, pip, xposed, dev mode, safe mode, PySDK auto-update | Плагины на Python через Chaquopy (Jython невозможен на iOS — см. migration-map: Swift-эквивалент) | ⬜ |
-| F8 | Updater мода | `updater/**`: UpdateLayout, UpdateAppAlertDialog, проверка версий через API | Проверка/установка обновлений | ⬜ |
-| F9 | ExteraGram API | `api/**`: ApiController, network backend, dto | Сеть мода (бейджи, обновления, конфиг) | ⬜ |
-| F10 | Бейджи (badge system) | `badges/**`: BadgesController, CachedRemoteSet | Бейджи разработчиков/саппортеров ExteraGram около ника | ⬜ |
-| F11 | Pill Stack движок | `pillstack/**` core + ui/pills | Система «пилюль» (виджетов) | ⬜ |
+| F8 | Updater мода | `updater/**`: UpdateLayout, UpdateAppAlertDialog, проверка версий через API | Проверка/установка обновлений | ✅ (ExteraUpdater) |
+| F9 | ExteraGram API | `api/**`: ApiController, network backend, dto | Сеть мода (бейджи, обновления, конфиг) | ✅ (ExteraApiClient — api.exteragram.app, 5 эндпоинтов) |
+| F10 | Бейджи (badge system) | `badges/**`: BadgesController, CachedRemoteSet | Бейджи разработчиков/саппортеров ExteraGram около ника | ✅ (ExteraBadgesController) |
+| F11 | Pill Stack движок | `pillstack/**` core + ui/pills | Система «пилюль» (виджетов) | ✅ (ExteraPillStack) |
 | F12 | Погода в профиле/пилюле | `weather/**` + Stories/recorder/Weather | Погода в stories + WeatherPill | ⬜ |
 | F13 | Инлайн-математика движок | `math/**` | Полный парсер выражений (функции, операторы) | ⬜ |
 | F14 | Passkeys | `utils/PasskeysUtil` | Passkey-логин | ⬜ |
@@ -196,6 +196,13 @@
 
 **Сводка для аудита (этап 6):**
 - Разделы: A(6) B(22) C(30) D(40) E(7) F(20) G(17) = **162 строки контракта**
-- Прогресс (PR-1 5a2eba8): A1 🔄, B22 ✅, C17 ✅, F16 ✅, C16 ✅. Ядро: ExteraConfig (143 настройки), 34 локали, IconManager (595+594), 32 иконки приложения (порт appicons/**, monet скомпозирован из vector), UI выбора, CFBundleAlternateIcons. CI ios-build зелёный.
+- Прогресс (PR-1..PR-6, 20c9a0e): 34 строки контракта ✅. Модуль ExteraGram на Swift:
+  ExteraConfig (143 настройки), 34 локали, IconManager (595+594 маппингов), 32 иконки
+  приложения + UI выбора, ZalgoFilter (1-в-1), appearance-хелперы (C-раздел),
+  math-движок (полный парсер), переводчик (4 провайдера), ExteraGram API (5 эндпоинтов
+  + бейджи + регдата с InvisibleEncryptor-декодером), speech (SFSpeechRecognizer),
+  adblock (WebKit rules), nowplaying, updater, proxy, PillStack (4 пилюли).
+  CI ios-build зелёный. Оставшееся: интеграция патчей в telegram-ios (UI-хуки),
+  feed, drawer, plugins-engine, AI, экспорт.
 - Иконки: см. `docs/icons.md` — 2846 иконок, 90 launcher-иконок
 - Контракт закрывается только когда все строки = ✅ и все иконки = ✅
