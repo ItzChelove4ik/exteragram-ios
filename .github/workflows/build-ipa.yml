@@ -85,12 +85,12 @@ jobs:
           cd ios/telegram-ios
           # xcodeManagedCodesigning: aps_environment="" — профили не нужны
           # SideLoadly подпишет ipa своим Apple ID при установке
-          python3 build-system/Make/Make.py build \
+          python3 build-system/Make/Make.py \
+            --bazelArguments="--//Telegram:disableProvisioningProfiles" \
+            build \
             --configurationPath="$GITHUB_WORKSPACE/ios/configuration/sideload-configuration.json" \
             --configuration="${{ inputs.configuration || 'release_arm64' }}" \
             --xcodeManagedCodesigning \
-            --bazelArguments="--//Telegram:disableProvisioningProfiles" \
-            --bazelArguments="--//Telegram:disableProvisioningProfiles" \
             --buildNumber=1 \
             --outputBuildArtifactsPath="$GITHUB_WORKSPACE/build-artifacts"
         timeout-minutes: 300
