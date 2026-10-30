@@ -55,4 +55,7 @@ python3 tools/scripts/patch-make-bazelargs.py
 # 7. Патч: расширения не встраиваются (rules_apple требует профили для device)
 python3 tools/scripts/patch-no-extensions.py
 
+# 8. Патч: фиктивный provisioning profile (rules_apple требует не-None профиль)
+python3 tools/scripts/patch-fake-profile.py
+
 echo "ExteraGram module integrated."
