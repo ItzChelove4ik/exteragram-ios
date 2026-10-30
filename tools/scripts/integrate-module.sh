@@ -49,4 +49,7 @@ BUILDEOF
 # 5. Патч Telegram/BUILD: подключить модуль как депенденси приложения (идемпотентно)
 python3 tools/scripts/patch-tg-build.py
 
+# 6. Патч Make.py: проброс --bazelArguments (dead в апстриме)
+python3 tools/scripts/patch-make-bazelargs.py
+
 echo "ExteraGram module integrated."
