@@ -76,7 +76,7 @@ content = '''<?xml version="1.0" encoding="UTF-8"?>
 \t<key>Entitlements</key>
 \t<dict>
 \t\t<key>application-identifier</key>
-\t\t<string>EXTERAGRAM.app.exteragram.sideloading</string>
+\t\t<string>.app.exteragram.sideloading</string>
 \t\t<key>aps-environment</key>
 \t\t<string>development</string>
 \t\t<key>get-task-allow</key>
