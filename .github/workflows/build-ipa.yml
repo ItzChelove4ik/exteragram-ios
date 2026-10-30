@@ -32,6 +32,15 @@ jobs:
           lfs: true
           submodules: recursive
 
+      - name: Fix nested submodule remotes (webrtc)
+        shell: bash
+        run: |
+          # checkout@v4 иногда теряет remote вложенных сабмодулей (webrtc
+          # указывал на telegram-ios вместо ali-fareed/webrtc) — sync восстанавливает
+          cd ios/telegram-ios
+          git submodule sync --recursive
+          git submodule update --init --recursive --depth 1             third-party/webrtc/webrtc ||             (git -C third-party/webrtc/webrtc remote set-url origin https://github.com/ali-fareed/webrtc.git              && git -C third-party/webrtc/webrtc fetch origin 6513c71d6c80311d69a0a6b9c09fcf32cfbeb247              && git -C third-party/webrtc/webrtc checkout 6513c71d6c80311d69a0a6b9c09fcf32cfbeb247)
+
       - name: Free disk space
         shell: bash
         run: |
