@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import ObjectiveC
 import UIKit
 
 // MARK: - AvatarCornerHelper (порт getAvatarCorners / AvatarCornerType)
@@ -286,6 +287,12 @@ public enum ExteraGlass {
         }
         return view
     }
+
+    private static func glareObserver(view: UIView, glare: CAGradientLayer) {
+        let observer = ExteraBoundsObserver(layer: glare)
+        observer.observe(view: view)
+        objc_setAssociatedObject(view, &ExteraBoundsObserver.associationKey, observer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
 }
 
 // MARK: - StickerShape (порт stickerShape: none/small/medium/large)
@@ -316,12 +323,6 @@ public enum ExteraStickerTime {
         }
     }
 
-    private static func glareObserver(view: UIView, glare: CAGradientLayer) {
-        // наблюдение за изменением bounds — обновление frame блика
-        let observer = ExteraBoundsObserver(layer: glare)
-        observer.observe(view: view)
-        objc_setAssociatedObject(view, &ExteraBoundsObserver.associationKey, observer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
 }
 
 private final class ExteraBoundsObserver: NSObject {
