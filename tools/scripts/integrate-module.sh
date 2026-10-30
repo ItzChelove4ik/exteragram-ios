@@ -52,4 +52,7 @@ python3 tools/scripts/patch-tg-build.py
 # 6. Патч Make.py: проброс --bazelArguments (dead в апстриме)
 python3 tools/scripts/patch-make-bazelargs.py
 
+# 7. Патч: расширения не встраиваются (rules_apple требует профили для device)
+python3 tools/scripts/patch-no-extensions.py
+
 echo "ExteraGram module integrated."
