@@ -217,12 +217,12 @@ public enum ExteraSectionStyle {
     /// Радиус секций настроек/листов
     public static var cornerRadius: CGFloat {
         let r = CGFloat(ExteraConfig.shared.sectionRadius)
-        return ExteraConfig.shared.sectionsSeparatedHeaders ? r : r / 2
+        return ExteraConfig.shared.sectionsSeparatedHeadersPreference ? r : r / 2
     }
 
     /// Разделённые заголовки секций
     public static var separatedHeaders: Bool {
-        return ExteraConfig.shared.sectionsSeparatedHeaders
+        return ExteraConfig.shared.sectionsSeparatedHeadersPreference
     }
 
     /// Применение к контейнеру секции
@@ -280,7 +280,7 @@ public enum ExteraGlass {
             glare.startPoint = CGPoint(x: 0.2, y: 0)
             glare.endPoint = CGPoint(x: 0.8, y: 1)
             glare.frame = view.bounds
-            glare.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            glare.autoresizingMask = [.layerWidthSizable, .layerHeightSizable]
             view.layer.addSublayer(glare)
         }
         return view
