@@ -97,7 +97,8 @@ public final class ExteraFeedConfig {
 
     /// Инкремент generation (внутренний)
     func bumpGeneration() {
-        self.generation += 1
+        let next = self.generation + 1
+        self.defaults.set(next, forKey: "generation")
     }
 
     // MARK: Изменения (порт applyExcluded/removeExcluded/setExcluded/clearExcluded)
