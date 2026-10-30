@@ -67,11 +67,9 @@ jobs:
       - name: Integrate ExteraGram module
         shell: bash
         run: |
-          cd ios/telegram-ios
-          # модуль + иконки (BUILD-патч идемпотентен)
-          bash ../tools/scripts/integrate-module.sh
-          python3 ../tools/scripts/gen-alticons-bazel.py || true
-          git diff --stat | tail -3 || true
+          # модуль + иконки (BUILD-патч идемпотентен); скрипты работают от корня репо
+          bash tools/scripts/integrate-module.sh
+          python3 tools/scripts/gen-alticons-bazel.py || true
 
       - name: Build (unsigned, xcode-managed codesigning off, no profiles)
         shell: bash
@@ -82,13 +80,13 @@ jobs:
           # disableExtensions: без extension-таргетов (не нужны для SideLoadly)
           # SideLoadly подпишет ipa своим Apple ID при установке
           python3 build-system/Make/Make.py build \
-            --configurationPath=../ios/configuration/sideload-configuration.json \
+            --configurationPath="$GITHUB_WORKSPACE/ios/configuration/sideload-configuration.json" \
             --configuration="${{ inputs.configuration || 'release_arm64' }}" \
             --xcodeManagedCodesigning \
             --disableProvisioningProfiles \
             --disableExtensions \
             --buildNumber=1 \
-            --outputBuildArtifactsPath=../build-artifacts
+            --outputBuildArtifactsPath="$GITHUB_WORKSPACE/build-artifacts"
         timeout-minutes: 300
 
       - name: Rename IPA
