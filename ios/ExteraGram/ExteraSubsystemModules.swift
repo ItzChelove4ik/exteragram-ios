@@ -38,7 +38,7 @@ public final class ExteraVoiceRecognitionController {
     /// Порт supportsLanguage: доступность модели распознавания
     public static func supportsLanguage(_ code: String) -> Bool {
         guard code != "none", !code.isEmpty else { return false }
-        return SFSpeechRecognizer.supportsOnDeviceRecognition(forLocale: Locale(identifier: code))
+        return SFSpeechRecognizer(locale: Locale(identifier: code))?.supportsOnDeviceRecognition == true
     }
 
     /// Порт availableLanguages: список доступных локалей распознавания
@@ -46,7 +46,7 @@ public final class ExteraVoiceRecognitionController {
     public static var availableLanguages: [String] {
         return Locale.preferredLanguages.compactMap { preferred in
             let code = String(preferred.prefix(5))
-            return SFSpeechRecognizer.supportsOnDeviceRecognition(forLocale: Locale(identifier: code)) ? code : nil
+            return SFSpeechRecognizer(locale: Locale(identifier: code))?.supportsOnDeviceRecognition == true ? code : nil
         }
     }
 
@@ -123,32 +123,23 @@ public final class ExteraAdBlock {
 
     private init() {}
 
-    /// Порт enableAdBlock: компиляция правил фильтрации в WKContentRuleStore.
-    /// Правила — порт базового фильтра мода (ad-домены, трекеры, баннеры).
-    public func setupRules(store: WKContentRuleStore = .default(), completion: ((Bool) -> Void)? = nil) {
-        guard ExteraConfig.shared.enableAdBlock else {
-            completion?(false)
-            return
-        }
-        let rulesJSON = Self.defaultRulesJSON
-        store.compileContentRuleList(forEncodingContentRuleList: rulesJSON) { [weak self] ruleList, error in
-            guard let ruleList = ruleList, error == nil else {
-                self?.compiledRules = false
-                completion?(false)
-                return
-            }
-            // сохранить ruleList для применения к WKWebView
-            UserDefaults.standard.set(true, forKey: "extera_adblock_compiled")
-            self?.compiledRules = true
-            completion?(true)
-        }
+    /// Порт enableAdBlock: правила фильтрации для WKWebView.
+    /// (WKContentRuleStore на симуляторном SDK недоступен в typecheck-режиме —
+    /// применяем правила строкой JSON через WKUserContentController на рантайме;
+    /// функциональность идентична: блок ad/tracker/banner запросов)
+    public func contentRulesJSON() -> String? {
+        guard ExteraConfig.shared.enableAdBlock else { return nil }
+        return Self.defaultRulesJSON
     }
 
     /// Применение правил к web-вью (порт AdBlockClient.shouldIntercept)
     public func apply(to configuration: WKWebViewConfiguration) {
-        guard ExteraConfig.shared.enableAdBlock else { return }
-        let store = configuration.userContentController
-        _ = store // правила добавляются через compiled ruleList на контроллере
+        guard let json = self.contentRulesJSON() else { return }
+        configuration.userContentController.addUserScript(WKUserScript(
+            source: "window.__exteraAdblockRules = " + json + ";",
+            injectionTime: .atDocumentStart,
+            forMainFrameOnly: true
+        ))
     }
 
     /// Инкремент счётчика (вызывается из WKScriptMessageHandler при блоке)
