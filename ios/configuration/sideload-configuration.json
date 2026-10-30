@@ -1,0 +1,14 @@
+{
+    "bundle_id": "app.exteragram.sideloading",
+    "api_id": "6",
+    "api_hash": "eb06d8abfb49dc6eebfb3a026d6d5161",
+    "team_id": "",
+    "app_center_id": "0",
+    "is_internal_build": "true",
+    "is_appstore_build": "false",
+    "appstore_id": "0",
+    "app_specific_url_scheme": "tg",
+    "premium_iap_product_id": "org.telegram.telegramPremium.monthly",
+    "enable_siri": "false",
+    "enable_icloud": "false"
+}

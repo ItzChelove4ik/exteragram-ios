@@ -1,0 +1,119 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: 'Build configuration'
+        required: true
+        default: 'release_arm64'
+        type: choice
+        options:
+          - release_arm64
+          - debug_arm64
+  push:
+    branches: [main]
+    paths:
+      - 'ios/ExteraGram/**'
+      - 'tools/scripts/**'
+      - '.github/workflows/build-ipa.yml'
+
+jobs:
+  build-ipa:
+    runs-on: macos-latest
+    timeout-minutes: 360 # полный билд telegram-ios: 1-3 часа
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout (LFS)
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+
+      - name: Free disk space
+        shell: bash
+        run: |
+          # очистка для ~40GB билда
+          sudo rm -rf /Applications/Xcode_15* /Applications/Xcode_16* 2>/dev/null || true
+          df -h /
+
+      - name: Select Xcode
+        shell: bash
+        run: |
+          ls /Applications/ | grep Xcode
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Install Bazel
+        shell: bash
+        run: |
+          brew install bazelisk
+          bazel --version
+
+      - name: Install Python deps
+        shell: bash
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pillow
+
+      - name: Verify Xcode/bazel versions vs versions.json
+        shell: bash
+        run: |
+          cat ios/telegram-ios/versions.json
+          # Make.py сверяет версии; допускаем расхождение через bazelArguments при необходимости
+
+      - name: Integrate ExteraGram module
+        shell: bash
+        run: |
+          cd ios/telegram-ios
+          # модуль + иконки (BUILD-патч идемпотентен)
+          bash ../tools/scripts/integrate-module.sh
+          python3 ../tools/scripts/gen-alticons-bazel.py || true
+          git diff --stat | tail -3 || true
+
+      - name: Build (unsigned, xcode-managed codesigning off, no profiles)
+        shell: bash
+        run: |
+          cd ios/telegram-ios
+          # xcodeManagedCodesigning: aps_environment="" — профили не нужны
+          # disableProvisioningProfiles: без mobileprovision
+          # disableExtensions: без extension-таргетов (не нужны для SideLoadly)
+          # SideLoadly подпишет ipa своим Apple ID при установке
+          python3 build-system/Make/Make.py build \
+            --configurationPath=../ios/configuration/sideload-configuration.json \
+            --configuration="${{ inputs.configuration || 'release_arm64' }}" \
+            --xcodeManagedCodesigning \
+            --disableProvisioningProfiles \
+            --disableExtensions \
+            --buildNumber=1 \
+            --outputBuildArtifactsPath=../build-artifacts
+        timeout-minutes: 300
+
+      - name: Rename IPA
+        shell: bash
+        run: |
+          if [ -f build-artifacts/Telegram.ipa ]; then
+            mv build-artifacts/Telegram.ipa "build-artifacts/ExteraGram-iOS-unsigned.ipa"
+            ls -la build-artifacts/
+          else
+            echo "IPA not found — build failed above"
+            exit 1
+          fi
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ExteraGram-iOS-unsigned
+          path: build-artifacts/ExteraGram-iOS-unsigned.ipa
+          retention-days: 90
+          compression-level: 0 # ipa уже сжат
+
+      - name: Create Release (optional, on tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build-artifacts/ExteraGram-iOS-unsigned.ipa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
