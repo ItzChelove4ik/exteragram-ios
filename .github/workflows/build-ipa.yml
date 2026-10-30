@@ -64,7 +64,6 @@ jobs:
       - name: Install Python deps
         shell: bash
         run: |
-          python3 -m pip install --upgrade pip --break-system-packages
           python3 -m pip install pillow --break-system-packages
 
       - name: Verify Xcode/bazel versions vs versions.json
