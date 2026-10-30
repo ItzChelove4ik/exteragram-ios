@@ -20,14 +20,15 @@ if marker in s:
     print("BUILD already patched")
     sys.exit(0)
 
-# Найдём первый ios_application(name = "Telegram") и добавим dep.
+# Найдём первый ios_application(name = "Telegram") и добавим dep в deps
+# (swift_library нельзя в frameworks — там требуются AppleBundleInfo-таргеты)
 i = s.index('ios_application(\n    name = "Telegram",')
 if i == -1:
     print("ios_application Telegram not found")
     sys.exit(1)
-# Ищем ближайший список deps/frameworks после него
-j = s.index("frameworks = [", i)
+# deps = [ ":Main", ":Lib", ... ] — ищем после ios_application
+j = s.index("deps = [", i)
 insert = "\n        \"//submodules/ExteraGram:ExteraGram\","
-s = s[: j + len("frameworks = [")] + insert + s[j + len("frameworks = [") :]
+s = s[: j + len("deps = [")] + insert + s[j + len("deps = [") :]
 open(p, "w", encoding="utf-8", newline="\n").write(s)
 print("BUILD patched: ExteraGram dep added")
