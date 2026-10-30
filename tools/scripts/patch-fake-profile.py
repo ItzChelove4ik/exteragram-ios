@@ -29,7 +29,7 @@ old_app = '''    provisioning_profile = select({
     entitlements = ":TelegramEntitlements.entitlements",'''
 new_app = '''    # ExteraGram fake profile patch: фиктивный профиль для безпрофильной
     # device-сборки (SideLoadly переподписывает ipa при установке)
-    provisioning_profile = ":ExteraFakeProfile",
+    provisioning_profile = ":ExteraFakeProfileFile",
     entitlements = ":TelegramEntitlements.entitlements",'''
 if old_app not in s:
     print('app pattern not found')
@@ -41,11 +41,6 @@ anchor = 'ios_application(\n    name = "Telegram",'
 fake_def = '''filegroup(
     name = "ExteraFakeProfileFile",
     srcs = ["Telegram-iOS/ExteraFakeProfile.mobileprovision"],
-)
-
-local_provisioning_profile(
-    name = "ExteraFakeProfile",
-    provisioning_profile = ":ExteraFakeProfileFile",
 )
 
 '''
