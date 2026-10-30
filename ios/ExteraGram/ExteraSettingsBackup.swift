@@ -74,7 +74,7 @@ public enum ExteraInvisibleEncryptor {
     /// Порт isEncrypted(s)
     public static func isEncrypted(_ s: String) -> Bool {
         guard !s.isEmpty else { return false }
-        if !Array(s.prefix(2)) == prefix { return false }
+        if Array(s.prefix(2)) != prefix { return false }
         let allowed = Set(alphabet) .union([separator])
         return s.dropFirst(2).allSatisfy { allowed.contains($0) }
     }
