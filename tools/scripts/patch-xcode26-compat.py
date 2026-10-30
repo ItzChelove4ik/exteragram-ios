@@ -26,7 +26,7 @@ old = '''    fileprivate var activeDivision: CGRect? {
 new = '''    fileprivate var activeDivision: CGRect? {
         // ExteraGram Xcode26 compat patch: reservedRegions недоступен в SDK Xcode 26
         // (CI-раннер); под Xcode 27.1 (требуемый versions.json) ветка активна
-        #if canImport UIKit, swift(>=6.4)
+        #if swift(>=6.4)
         if #available(iOS 27.1, *) {
             return self.eventView.reservedRegions(kind: .division).first(where: \\.isActive)?.frame
         }
