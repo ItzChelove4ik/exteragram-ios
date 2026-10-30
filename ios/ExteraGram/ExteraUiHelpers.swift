@@ -26,7 +26,7 @@ public enum ExteraAvatarCorners {
     /// из ExteraConfig.avatarCorners (0..100%) с типом скругления.
     public static func radius(px: CGFloat, forum: Bool = false, community: Bool = false) -> CGFloat {
         let config = ExteraConfig.shared
-        let base = px * config.avatarCorners / 100.0
+        let base = px * CGFloat(config.avatarCorners) / 100.0
         let type: AvatarCornerType = forum ? .forum : (community ? .community : .default)
         switch type {
         case .default:
@@ -44,7 +44,7 @@ public enum ExteraAvatarCorners {
     /// Единый радиус (singleCornerRadius): все углы равны максимальному
     public static func unifiedRadius(px: CGFloat) -> CGFloat {
         let config = ExteraConfig.shared
-        return config.singleCornerRadius ? min(px, px * config.avatarCorners / 100.0) : radius(px: px)
+        return config.singleCornerRadius ? min(px, px * CGFloat(config.avatarCorners) / 100.0) : radius(px: px)
     }
 }
 
@@ -188,10 +188,10 @@ public enum ExteraDividerHelper {
         switch ExteraConfig.shared.dividerStyle {
         case .line:
             layer.backgroundColor = UIColor.separator.cgColor
-            layer.height = 0.5
+            layer.frame.size.height = 0.5
         case .gradient:
             layer.backgroundColor = UIColor.clear.cgColor
-            layer.height = 0.5
+            layer.frame.size.height = 0.5
             // градиентная линия — через CAGradientLayer на месте вызова
         case .none:
             layer.isHidden = true
