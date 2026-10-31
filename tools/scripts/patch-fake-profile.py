@@ -49,68 +49,10 @@ if 'ExteraFakeProfile' not in s.split(anchor)[0]:
 
 open(p, 'w', encoding='utf-8', newline='\n').write(s)
 
-# 3. Создаём сам файл .mobileprovision: валидный plist со всеми ключами,
-#    которые читает rules_apple provisioning_profile_tool (AppIDName и пр.)
-os.makedirs('ios/telegram-ios/Telegram/Telegram-iOS', exist_ok=True)
-prof_path = 'ios/telegram-ios/Telegram/Telegram-iOS/ExteraFakeProfile.mobileprovision'
-content = '''<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-\t<key>AppIDName</key>
-\t<string>ExteraGram Sideload</string>
-\t<key>ApplicationIdentifierPrefix</key>
-\t<array>
-\t\t<string>EXTERAGRAM</string>
-\t</array>
-\t<key>CreationDate</key>
-\t<date>2026-10-30T00:00:00Z</date>
-\t<key>Platform</key>
-\t<array>
-\t\t<string>iOS</string>
-\t</array>
-\t<key>IsXcodeManaged</key>
-\t<false/>
-\t<key>DeveloperCertificates</key>
-\t<array/>
-\t<key>Entitlements</key>
-\t<dict>
-\t\t<key>application-identifier</key>
-\t\t<string>.app.exteragram.sideloading</string>
-\t\t<key>aps-environment</key>
-\t\t<string>development</string>
-\t\t<key>get-task-allow</key>
-\t\t<true/>
-\t\t<key>com.apple.security.application-groups</key>
-\t\t<array>
-\t\t\t<string>group.app.exteragram.sideloading</string>
-\t\t</array>
-\t\t<key>com.apple.developer.team-identifier</key>
-\t\t<string></string>
-\t</dict>
-\t<key>ExpirationDate</key>
-\t<date>2036-10-30T00:00:00Z</date>
-\t<key>Name</key>
-\t<string>ExteraGram Sideload Profile</string>
-\t<key>ProvisionedDevices</key>
-\t<array/>
-\t<key>TeamIdentifier</key>
-\t<array>
-\t\t<string>EXTERAGRAM</string>
-\t</array>
-\t<key>TeamName</key>
-\t<string>ExteraGram</string>
-\t<key>TimeToLive</key>
-\t<integer>3650</integer>
-\t<key>UUID</key>
-\t<string>11111111-2222-3333-4444-555555555555</string>
-\t<key>Version</key>
-\t<integer>1</integer>
-</dict>
-</plist>
-'''
-with open(prof_path, 'w', encoding='utf-8', newline='\n') as f:
-    f.write(content)
-print('fake profile file written')
+# 3. Создаём сам файл .mobileprovision: CMS/DER-обёртка (security cms -D
+#    требует PKCS#7 контейнер; чистый XML не читается)
+import subprocess
+subprocess.run(['bash', 'tools/scripts/make-cms-profile.sh'], check=False)
+print('fake profile file written (CMS)')
 
 print('BUILD patched with fake profile')
