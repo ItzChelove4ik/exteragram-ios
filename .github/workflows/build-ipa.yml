@@ -86,7 +86,7 @@ jobs:
           # xcodeManagedCodesigning: aps_environment="" — профили не нужны
           # SideLoadly подпишет ipa своим Apple ID при установке
           python3 build-system/Make/Make.py \
-            --bazelArguments="--//Telegram:disableProvisioningProfiles --action_env=SWIFT_DISABLE_SIL_OWNERSHIP_VERIFIER=1" \
+            --bazelArguments="--//Telegram:disableProvisioningProfiles --action_env=SWIFT_DISABLE_SIL_OWNERSHIP_VERIFIER=1 --ios_signing_cert_name=-" \
             --overrideXcodeVersion \
             build \
             --configurationPath="$GITHUB_WORKSPACE/ios/configuration/sideload-configuration.json" \
