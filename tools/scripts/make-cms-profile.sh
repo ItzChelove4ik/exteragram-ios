@@ -94,7 +94,7 @@ if command -v security >/dev/null 2>&1; then
   security list-keychains -d user -s "$KC" $(security list-keychains -d user | tr '
 ' ' ') 2>/dev/null || true
   security unlock-keychain -p "$KC_PASS" "$KC" 2>/dev/null || true
-  openssl pkcs12 -export -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem"     -name "ExteraGram Sideload" -passout pass:"$KC_PASS" 2>/dev/null
+  openssl pkcs12 -export -legacy -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass:"$KC_PASS" 2>/dev/null || openssl pkcs12 -export -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass:"$KC_PASS" 2>/dev/null
   security import "$CERT.p12" -k "$KC" -P "$KC_PASS" -T /usr/bin/codesign 2>&1 | head -2 || true
   security set-key-partition-list -S apple-tool:,apple: -s -k "$KC_PASS" "$KC" 2>/dev/null || true
   security find-identity -v -p codesigning 2>/dev/null | grep "ExteraGram" || echo "identity not found in keychains"
