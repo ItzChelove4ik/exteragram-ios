@@ -96,7 +96,9 @@ if command -v security >/dev/null 2>&1; then
   security list-keychains -d user -s "$KC" $EXISTING || true
   security unlock-keychain -p "$KC_PASS" "$KC" || true
   openssl pkcs12 -export -legacy -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass:"$KC_PASS" 2>/dev/null || openssl pkcs12 -export -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass:"$KC_PASS" 2>/dev/null
-  security import "$CERT.p12" -k "$KC" -P "$KC_PASS" -T /usr/bin/codesign -T /usr/bin/security || true
+  # p12 import может потерять ключ — импортируем key и cert отдельно
+  security import "$CERT.key" -k "$KC" -T /usr/bin/codesign -T /usr/bin/security || true
+  security import "$CERT.pem" -k "$KC" -T /usr/bin/codesign -T /usr/bin/security -P "" || true
   security set-key-partition-list -S apple-tool:,apple: -k "$KC_PASS" "$KC" || true
   security find-identity -v -p codesigning | grep "ExteraGram" || echo "identity not found"
 fi
