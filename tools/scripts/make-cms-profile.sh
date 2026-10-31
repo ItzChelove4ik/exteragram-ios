@@ -86,7 +86,7 @@ openssl cms -digest_create -outform DER -out "$OUT" -in "$PLIST" -binary -md sha
 
 # 5. Импорт identity в keychain (macOS-only — на CI)
 if command -v security >/dev/null 2>&1; then
-  KC="$WORKDIR/extera.keychain-db"
+  KC="$HOME/Library/Keychains/extera.keychain-db"
   KC_PASS="extera123"
   rm -f "$KC"
   security create-keychain -p "$KC_PASS" "$KC" || true
