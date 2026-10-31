@@ -100,7 +100,7 @@ if command -v security >/dev/null 2>&1; then
   security import "$CERT.key" -k "$KC" -T /usr/bin/codesign -T /usr/bin/security || true
   security import "$CERT.pem" -k "$KC" -T /usr/bin/codesign -T /usr/bin/security -P "" || true
   security set-key-partition-list -S apple-tool:,apple: -k "$KC_PASS" "$KC" || true
-  security find-identity -v -p codesigning | grep "ExteraGram" || echo "identity not found"
+  security find-identity -v -p codesigning | grep "ExteraGram" ||     security find-identity -v -p codesigning "$KC" | grep "ExteraGram" ||     (echo "identity diagnostics:"; security find-identity -v -p codesigning; security find-identity -v -p codesigning "$KC"; echo "dump cert:"; security find-certificate -a "$KC" | head -20)
 fi
 
 echo "CMS profile with throwaway cert ready: $(wc -c < "$OUT") bytes"
