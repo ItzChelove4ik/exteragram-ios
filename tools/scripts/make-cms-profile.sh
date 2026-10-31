@@ -86,14 +86,20 @@ openssl cms -digest_create -outform DER -out "$OUT" -in "$PLIST" -binary -md sha
 
 # 5. Импорт identity в keychain (macOS-only — на CI)
 if command -v security >/dev/null 2>&1; then
-  # login keychain раннера: p12-импорт линкует key+cert автоматически
-  LOGIN_KC=$(security default-keychain -d user | tr -d '"')
-  security unlock-keychain -p "" "$LOGIN_KC" 2>/dev/null || true
-  openssl pkcs12 -export -legacy -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass: 2>/dev/null || openssl pkcs12 -export -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass: 2>/dev/null
-  # пустой пароль p12; импорт с partition list
-  security import "$CERT.p12" -k "$LOGIN_KC" -P "" -T /usr/bin/codesign -T /usr/bin/security -A 2>&1 | head -2 || true
-  # разрешить codesign без диалога
-  security set-key-partition-list -S apple-tool:,apple: -s -k "" "$LOGIN_KC" 2>/dev/null || true
+  # создаём keychain, делаем его DEFAULT (sandbox-процессы ищут по default),
+  # как это делают fastlane/gym на CI
+  KC="$HOME/Library/Keychains/extera.keychain-db"
+  KC_PASS="extera123"
+  rm -f "$KC" "$KC"-*
+  security create-keychain -p "$KC_PASS" "$KC" || true
+  security list-keychains -d user -s "$KC" $(security list-keychains -d user | sed 's/"//g' | tr '
+' ' ') || true
+  security default-keychain -d user -s "$KC" || true
+  security unlock-keychain -p "$KC_PASS" "$KC" || true
+  security set-keychain-settings -t 3600 -u "$KC" || true
+  openssl pkcs12 -export -legacy -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass:"$KC_PASS" 2>/dev/null
+  security import "$CERT.p12" -k "$KC" -P "$KC_PASS" -T /usr/bin/codesign -T /usr/bin/security -A 2>&1 | head -2 || true
+  security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KC_PASS" "$KC" 2>/dev/null || true
   security find-identity -v -p codesigning | grep "ExteraGram" || echo "WARN: identity still not found"
 fi
 
