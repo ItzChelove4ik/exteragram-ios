@@ -86,21 +86,15 @@ openssl cms -digest_create -outform DER -out "$OUT" -in "$PLIST" -binary -md sha
 
 # 5. Импорт identity в keychain (macOS-only — на CI)
 if command -v security >/dev/null 2>&1; then
-  KC="$HOME/Library/Keychains/extera.keychain-db"
-  KC_PASS="extera123"
-  rm -f "$KC"
-  security create-keychain -p "$KC_PASS" "$KC" || true
-  # добавить наш keychain в поисковый список (перезаписью с существующими)
-  EXISTING=$(security list-keychains -d user | sed "s/^\"//;s/\"$//" | tr "
-" " ")
-  security list-keychains -d user -s "$KC" $EXISTING || true
-  security unlock-keychain -p "$KC_PASS" "$KC" || true
-  openssl pkcs12 -export -legacy -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass:"$KC_PASS" 2>/dev/null || openssl pkcs12 -export -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass:"$KC_PASS" 2>/dev/null
-  # p12 import может потерять ключ — импортируем key и cert отдельно
-  security import "$CERT.key" -k "$KC" -T /usr/bin/codesign -T /usr/bin/security || true
-  security import "$CERT.pem" -k "$KC" -T /usr/bin/codesign -T /usr/bin/security -P "" || true
-  security set-key-partition-list -S apple-tool:,apple: -k "$KC_PASS" "$KC" || true
-  security find-identity -v -p codesigning | grep "ExteraGram" ||     security find-identity -v -p codesigning "$KC" | grep "ExteraGram" ||     (echo "identity diagnostics:"; security find-identity -v -p codesigning; security find-identity -v -p codesigning "$KC"; echo "dump cert:"; security find-certificate -a "$KC" | head -20)
+  # login keychain раннера: p12-импорт линкует key+cert автоматически
+  LOGIN_KC=$(security default-keychain -d user | tr -d '"')
+  security unlock-keychain -p "" "$LOGIN_KC" 2>/dev/null || true
+  openssl pkcs12 -export -legacy -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass: 2>/dev/null || openssl pkcs12 -export -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" -name "ExteraGram Sideload" -passout pass: 2>/dev/null
+  # пустой пароль p12; импорт с partition list
+  security import "$CERT.p12" -k "$LOGIN_KC" -P "" -T /usr/bin/codesign -T /usr/bin/security -A 2>&1 | head -2 || true
+  # разрешить codesign без диалога
+  security set-key-partition-list -S apple-tool:,apple: -s -k "" "$LOGIN_KC" 2>/dev/null || true
+  security find-identity -v -p codesigning | grep "ExteraGram" || echo "WARN: identity still not found"
 fi
 
 echo "CMS profile with throwaway cert ready: $(wc -c < "$OUT") bytes"
