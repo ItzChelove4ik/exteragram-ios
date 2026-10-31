@@ -1,18 +1,27 @@
 #!/bin/bash
-# Создание CMS-обёрнутого .mobileprovision (DER) из plist XML.
-# security cms -D требует CMS/PKCS#7 контейнер — чистый XML не читает.
-# Подход: openssl smime -sign без сертификата невозможен; используем
-# самоподписанный сертификат throwaway (не входит в профиль для identity —
-# profile с пустым DeveloperCertificates не даёт identity; но codesigningtool
-# проверяет только plist-часть для identity -).
-# Простейший валидный CMS: создадим через openssl cms -digest_create (без подписи).
+# Создание self-signed сертификата + CMS-профиля с ним, импорт в keychain.
+# codesigningtool ищет identity по сертификатам профиля (DeveloperCertificates).
+# Генерируем throwaway cert, встраиваем в профиль, импортируем в CI-keychain.
 set -euo pipefail
 
-IN_PLIST="ios/telegram-ios/Telegram/Telegram-iOS/ExteraFakeProfile.mobileprovision.plist"
-OUT_DER="ios/telegram-ios/Telegram/Telegram-iOS/ExteraFakeProfile.mobileprovision"
+WORKDIR="ios/telegram-ios/Telegram/Telegram-iOS"
+CERT="$WORKDIR/extera-throwaway"
+PLIST="$WORKDIR/ExteraFakeProfile.mobileprovision.plist"
+OUT="$WORKDIR/ExteraFakeProfile.mobileprovision"
 
-# 1. Чистый plist
-cat > "$IN_PLIST.tmp" <<'PLISTEOF'
+# 1. Self-signed certificate (throwaway, ad-hoc signing identity)
+if [ ! -f "$CERT.key" ]; then
+  printf '%s\n' "[req]" "distinguished_name = dn" "x509_extensions = v3_ext" "prompt = no" "[dn]" "CN = ExteraGram Sideload" "O = ExteraGram" "[v3_ext]" "keyUsage = digitalSignature" > "$CERT.cnf"
+  openssl req -x509 -newkey rsa:2048 -keyout "$CERT.key" -out "$CERT.pem" -days 3650 -nodes -config "$CERT.cnf" 2>/dev/null
+fi
+
+# 2. DER-сертификат для встраивания в профиль
+openssl x509 -in "$CERT.pem" -outform DER -out "$CERT.der"
+
+# 3. Plist профиля с сертификатом внутри (base64 DER)
+CERT_B64=$(base64 < "$CERT.der" | tr -d '\n')
+
+cat > "$PLIST" <<PLISTEOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -32,7 +41,9 @@ cat > "$IN_PLIST.tmp" <<'PLISTEOF'
 	<key>IsXcodeManaged</key>
 	<false/>
 	<key>DeveloperCertificates</key>
-	<array/>
+	<array>
+		<data>$CERT_B64</data>
+	</array>
 	<key>Entitlements</key>
 	<dict>
 		<key>application-identifier</key>
@@ -69,24 +80,19 @@ cat > "$IN_PLIST.tmp" <<'PLISTEOF'
 </dict>
 </plist>
 PLISTEOF
-mv "$IN_PLIST.tmp" "$IN_PLIST"
 
-# 2. CMS-обёртка: openssl cms (digest-only — валидный CMS, security cms -D читает)
-openssl cms -cmsout -outform DER -out "$OUT_DER.tmp" -in "$IN_PLIST" -inform DER 2>/dev/null || true
-if [ ! -s "$OUT_DER.tmp" ]; then
-  # fallback: openssl smime пустая подпись невозможна — используем -digest_create
-  openssl cms -digest_create -outform DER -out "$OUT_DER" -in "$IN_PLIST" -binary -md sha256 2>/dev/null || {
-    # ещё fallback: просто DER-обёртка через asn1parse-совместимый контейнер
-    cp "$IN_PLIST" "$OUT_DER"
-  }
-  rm -f "$OUT_DER.tmp"
-else
-  mv "$OUT_DER.tmp" "$OUT_DER"
-fi
+# 4. CMS-обёртка (security cms -D требует PKCS#7)
+openssl cms -digest_create -outform DER -out "$OUT" -in "$PLIST" -binary -md sha256
 
-# 3. Проверка: security cms -D должен прочитать (macOS-only; на Linux пропускаем)
+# 5. Импорт identity в keychain (macOS-only — на CI)
 if command -v security >/dev/null 2>&1; then
-  security cms -D -i "$OUT_DER" > /dev/null && echo "CMS profile OK" || echo "WARN: security cms failed (will check on CI)"
-else
-  echo "security cmd not available (Linux) — CMS wrap done: $(wc -c < "$OUT_DER") bytes"
+  # p12 для импорта
+  openssl pkcs12 -export -out "$CERT.p12" -inkey "$CERT.key" -in "$CERT.pem" \
+    -name "ExteraGram Sideload" -passout pass: 2>/dev/null
+  security import "$CERT.p12" -k "$(security default-keychain -d user | tr -d '"')" -P "" -T /usr/bin/codesign 2>/dev/null || \
+    security import "$CERT.p12" -P "" -T /usr/bin/codesign 2>/dev/null || true
+  # verify
+  security find-identity -v -p codesigning | grep "ExteraGram" || echo "identity not found (check import)"
 fi
+
+echo "CMS profile with throwaway cert ready: $(wc -c < "$OUT") bytes"
