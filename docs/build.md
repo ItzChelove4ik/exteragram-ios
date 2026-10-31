@@ -51,3 +51,24 @@
   баннер новой версии со ссылкой (TestFlight/сайт).
 - **Google Crashlytics/Analytics**: в iOS-сборке нет Google-телеметрии; флаги
   перенесены в конфиг для сохранения настроек/экспорта.
+
+## ✅ Сборка .ipa через GitHub Actions (готово)
+
+Workflow `build-ipa.yml` собирает полный ExteraGram iOS (telegram-ios + модуль
+ExteraGram + 31 альтернативная иконка) на бесплатных macOS-раннерах GitHub:
+
+1. Actions → **Build iOS IPA** → Run workflow (release_arm64, ~2.5 часа)
+2. Готовый артефакт: **ExteraGram-iOS-unsigned.ipa** (~87 МБ) — раздел Artifacts
+3. Установка через **SideLoadly**: скачанный .ipa → SideLoadly → свой Apple ID
+   → SideLoadly сам переподписывает ad-hoc → установка на iPhone
+
+### Технические решения без подписи (для SideLoadly)
+- `--ios_signing_cert_name=-`: ad-hoc подпись (SideLoadly заменит своей)
+- Фиктивный CMS-профиль (PKCS#7): для анализа rules_apple
+- Расширения (Share/Notification/Widget) выпилены: rules_apple требует профили
+- Патчи совместимости: iOS 27.1-API guard, Swift OSSA crash workaround
+- bundle_id: `app.exteragram.sideloading`, api_id: 6 (официальный тестовый)
+
+### Ссылка на артефакт
+https://github.com/ItzChelove4ik/exteragram-ios/actions/workflows/build-ipa.yml
+→ последний успешный run → Artifacts → ExteraGram-iOS-unsigned
