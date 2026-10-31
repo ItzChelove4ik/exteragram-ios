@@ -61,4 +61,7 @@ python3 tools/scripts/patch-fake-profile.py
 # 9. Патч: iOS 27.1-API guard под Xcode 26 CI-раннера
 python3 tools/scripts/patch-xcode26-compat.py
 
+# 10. Патч: Swift compiler crash workaround (OSSA lifetime в ShareScreen)
+python3 tools/scripts/patch-swift-crash-workaround.py
+
 echo "ExteraGram module integrated."
