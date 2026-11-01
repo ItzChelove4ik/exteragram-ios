@@ -1,49 +1,49 @@
 #!/usr/bin/env python3
-"""Правка #4: иконка приложения → оригинальная ExteraGram.
-
-Заменяет Telegram.icon (композерный asset) на фиксированные PNG:
-- Telegram-iOS/Telegram.icon/ → полный AppIcon-набор PNG (все iOS-размеры),
-  icon.json убран, папка превращается в набор готовых PNG.
-- rules_apple app_icons принимает filegroup PNG-файлов из папки .icon
-  (формат: AppIcon60x60@2x.png и т.д. — как в стандартных xcassets).
-
-Иконка составлена из adaptive-icon APK:
-  фон #e83030 (ic_background), foreground ic_launcher_foreground (белый
-  самолётик ExteraGram), безопасная зона 66/108, без alpha.
-"""
+"""Pravka #4: ikonka ExteraGram v DefaultAppIcon.xcassets (appiconset)."""
+import json
 import os
+import shutil
 from PIL import Image
 
 SRC_FG = 'decompiled/resources/res/mipmap-xxxhdpi/ic_launcher_foreground.webp'
-ICON_DIR = 'ios/telegram-ios/Telegram/Telegram-iOS/Telegram.icon'
-BG = (232, 48, 48)  # #e83030
+XCASSETS = 'ios/telegram-ios/Telegram/Telegram-iOS/DefaultAppIcon.xcassets'
+APPICONSET = os.path.join(XCASSETS, 'AppIcon.appiconset')
+BG = (232, 48, 48)
 
-# iOS AppIcon-размеры (имена как в asset catalogs — rules_apple берёт по имени)
-SIZES = {
-    'AppIcon20x20@2x.png': 40,
-    'AppIcon20x20@3x.png': 60,
-    'AppIcon29x29@2x.png': 58,
-    'AppIcon29x29@3x.png': 87,
-    'AppIcon40x40@2x.png': 80,
-    'AppIcon40x40@3x.png': 120,
-    'AppIcon60x60@2x.png': 120,
-    'AppIcon60x60@3x.png': 180,
-    'AppIcon76x76@2x.png': 152,
-    'AppIcon83.5x83.5@2x.png': 167,
-    'AppIcon1024x1024.png': 1024,
-    # legacy
-    'AppIcon57x57@2x.png': 114,
-    'AppIcon72x72@2x.png': 144,
-}
+SIZES = [
+    ('AppIcon20x20@2x.png', 'iphone', '2x', '20x20'),
+    ('AppIcon20x20@3x.png', 'iphone', '3x', '20x20'),
+    ('AppIcon29x29@2x.png', 'iphone', '2x', '29x29'),
+    ('AppIcon29x29@3x.png', 'iphone', '3x', '29x29'),
+    ('AppIcon40x40@2x.png', 'iphone', '2x', '40x40'),
+    ('AppIcon40x40@3x.png', 'iphone', '3x', '40x40'),
+    ('AppIcon60x60@2x.png', 'iphone', '2x', '60x60'),
+    ('AppIcon60x60@3x.png', 'iphone', '3x', '60x60'),
+    ('AppIcon20x20~ipad.png', 'ipad', '1x', '20x20'),
+    ('AppIcon20x20@2x~ipad.png', 'ipad', '2x', '20x20'),
+    ('AppIcon29x29~ipad.png', 'ipad', '1x', '29x29'),
+    ('AppIcon29x29@2x~ipad.png', 'ipad', '2x', '29x29'),
+    ('AppIcon40x40~ipad.png', 'ipad', '1x', '40x40'),
+    ('AppIcon40x40@2x~ipad.png', 'ipad', '2x', '40x40'),
+    ('AppIcon76x76~ipad.png', 'ipad', '1x', '76x76'),
+    ('AppIcon76x76@2x~ipad.png', 'ipad', '2x', '76x76'),
+    ('AppIcon83.5x83.5@2x~ipad.png', 'ipad', '2x', '83.5x83.5'),
+    ('AppIcon1024x1024.png', 'ios-marketing', '1x', '1024x1024'),
+]
+
+NL = chr(10)
 
 
-def compose_base() -> Image:
+def scale_px(size, scale):
+    return int(float(size.split('x')[0]) * float(scale.replace('x', '')))
+
+
+def compose_base():
     fg = Image.open(SRC_FG).convert('RGBA')
-    src_w = fg.size[0]  # 432
-    visible = int(src_w * 66 / 108)  # 264 — safe zone
+    src_w = fg.size[0]
+    visible = int(src_w * 66 / 108)
     left = (src_w - visible) // 2
     crop = fg.crop((left, left, left + visible, left + visible))
-    # до 1024
     base = crop.resize((1024, 1024), Image.LANCZOS)
     canvas = Image.new('RGB', (1024, 1024), BG)
     canvas.paste(base, (0, 0), base)
@@ -51,20 +51,39 @@ def compose_base() -> Image:
 
 
 def main():
+    if os.path.isdir(APPICONSET):
+        shutil.rmtree(APPICONSET)
+    os.makedirs(APPICONSET, exist_ok=True)
+
     base = compose_base()
-    os.makedirs(ICON_DIR, exist_ok=True)
-    # очистить старый композерный asset (файлы и каталоги)
-    import shutil
-    for fn in os.listdir(ICON_DIR):
-        path = os.path.join(ICON_DIR, fn)
-        if os.path.isdir(path):
-            shutil.rmtree(path)
+    images = []
+    for filename, idiom, scale, size in SIZES:
+        px = scale_px(size, scale)
+        im = base.resize((px, px), Image.LANCZOS)
+        im.save(os.path.join(APPICONSET, filename), 'PNG')
+        images.append({'filename': filename, 'idiom': idiom, 'scale': scale, 'size': size})
+    contents = {'images': images, 'info': {'version': 1, 'author': 'xcode'}}
+    with open(os.path.join(APPICONSET, 'Contents.json'), 'w', encoding='utf-8', newline=NL) as f:
+        json.dump(contents, f, indent=2)
+    print('AppIcon.appiconset:', len(images), 'icons')
+
+    llc = os.path.join(XCASSETS, 'AppIconLLC.appiconset')
+    if os.path.isdir(llc):
+        shutil.rmtree(llc)
+        print('removed AppIconLLC.appiconset')
+
+    p = 'ios/telegram-ios/Telegram/BUILD'
+    s2 = open(p, encoding='utf-8').read()
+    if 'ExteraGram app icons patch' not in s2:
+        old = 'app_icons = [ ":{}_icon".format(name) for name in composer_icon_folders ],'
+        new = '# ExteraGram app icons patch: DefaultAppIcon.xcassets' + NL + '    app_icons = [":DefaultAppIcon"],'
+        if old in s2:
+            s2 = s2.replace(old, new, 1)
+            with open(p, 'w', encoding='utf-8', newline=NL) as f:
+                f.write(s2)
+            print('BUILD patched: app_icons = DefaultAppIcon')
         else:
-            os.remove(path)
-    for name, size in SIZES.items():
-        im = base.resize((size, size), Image.LANCZOS)
-        im.save(os.path.join(ICON_DIR, name), 'PNG')
-    print('AppIcon set:', len(SIZES), 'files in', ICON_DIR)
+            print('WARN: app_icons pattern not found')
 
 
 if __name__ == '__main__':
