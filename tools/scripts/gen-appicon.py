@@ -53,9 +53,14 @@ def compose_base() -> Image:
 def main():
     base = compose_base()
     os.makedirs(ICON_DIR, exist_ok=True)
-    # очистить старый композерный asset
+    # очистить старый композерный asset (файлы и каталоги)
+    import shutil
     for fn in os.listdir(ICON_DIR):
-        os.remove(os.path.join(ICON_DIR, fn))
+        path = os.path.join(ICON_DIR, fn)
+        if os.path.isdir(path):
+            shutil.rmtree(path)
+        else:
+            os.remove(path)
     for name, size in SIZES.items():
         im = base.resize((size, size), Image.LANCZOS)
         im.save(os.path.join(ICON_DIR, name), 'PNG')
