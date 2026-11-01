@@ -24,6 +24,12 @@ jobs:
     timeout-minutes: 360 # полный билд telegram-ios: 1-3 часа
     permissions:
       contents: write
+    env:
+      # Telegram API ключи (https://my.telegram.org/apps) — из GitHub Secrets,
+      # НЕ хранятся в исходниках. Если секреты не заданы — fallback на тестовые
+      # (вход может не работать: Telegram блокирует десктопный api_id на мобильных)
+      EXTERAGRAM_API_ID: ${{ secrets.EXTERAGRAM_API_ID }}
+      EXTERAGRAM_API_HASH: ${{ secrets.EXTERAGRAM_API_HASH }}
 
     steps:
       - name: Checkout (LFS)
@@ -78,6 +84,33 @@ jobs:
           # модуль + иконки (BUILD-патч идемпотентен); скрипты работают от корня репо
           bash tools/scripts/integrate-module.sh
           python3 tools/scripts/gen-alticons-bazel.py || true
+
+      - name: Generate build configuration from secrets
+        shell: bash
+        run: |
+          # конфиг с api-ключами из секретов; fallback — тестовые значения
+          API_ID="${EXTERAGRAM_API_ID:-6}"
+          API_HASH="${EXTERAGRAM_API_HASH:-eb06d8abfb49dc6eebfb3a026d6d5161}"
+          if [ "$API_ID" = "6" ]; then
+            echo "::warning::EXTERAGRAM_API_ID secret не задан — используется тестовый api_id=6 (вход в аккаунт может не работать). Задай свои ключи: https://github.com/ItzChelove4ik/exteragram-ios/settings/secrets/actions"
+          fi
+          cat > ios/configuration/sideload-configuration.json <<EOF
+          {
+              "bundle_id": "app.exteragram.sideloading",
+              "api_id": "$API_ID",
+              "api_hash": "$API_HASH",
+              "team_id": "",
+              "app_center_id": "0",
+              "is_internal_build": "true",
+              "is_appstore_build": "false",
+              "appstore_id": "0",
+              "app_specific_url_scheme": "tg",
+              "premium_iap_product_id": "org.telegram.telegramPremium.monthly",
+              "enable_siri": false,
+              "enable_icloud": false
+          }
+          EOF
+          echo "config generated (api_id=$API_ID)"
 
       - name: Build (unsigned, xcode-managed codesigning off, no profiles)
         shell: bash
