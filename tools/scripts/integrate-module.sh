@@ -65,3 +65,17 @@ python3 tools/scripts/patch-xcode26-compat.py
 python3 tools/scripts/patch-swift-crash-workaround.py
 
 echo "ExteraGram module integrated."
+# 11. Баг #1: app group fallback (ad-hoc) — чёрный экран "Error 2"
+python3 tools/scripts/patch-appgroup-fallback.py
+
+# 12. Баг #1: keychain access group (ad-hoc) — краш configure
+python3 tools/scripts/patch-keychain-adhoc.py
+
+# 13. Баг #1: passcode валидация access group (ad-hoc)
+python3 tools/scripts/patch-passcode-adhoc.py
+
+# 14. Правка #3: имя приложения exteraGram
+python3 tools/scripts/patch-app-name.py
+
+# 15. Правка #4: иконка приложения ExteraGram (заменяет Telegram.icon)
+python3 tools/scripts/gen-appicon.py
