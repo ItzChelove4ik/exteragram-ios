@@ -42,6 +42,7 @@ private struct ExteraToggleEntry: Equatable {
         return lhs.key == rhs.key && lhs.value == rhs.value
     }
 
+    var id: String { return self.key }
     var stableId: String { return self.key }
 }
 
@@ -56,6 +57,7 @@ private struct ExteraAdjustEntry: Equatable {
         return lhs.key == rhs.key && lhs.value == rhs.value
     }
 
+    var id: String { return self.key }
     var stableId: String { return self.key }
 }
 
@@ -120,6 +122,23 @@ private enum ExteraSettingsEntryItem: ItemListNodeEntry, Equatable {
 
     var id: String {
         switch self {
+
+        case let .header(_, section):
+            return "header_\(Int(section.rawValue))"
+        case let .toggle(entry):
+            return "toggle_\(entry.key)"
+        case let .adjust(entry):
+            return "adjust_\(entry.key)"
+        case .resetAction:
+            return "resetAction"
+        case .version:
+            return "version"
+        }
+    }
+
+    var stableId: String {
+        switch self {
+
         case let .header(_, section):
             return "header_\(Int(section.rawValue))"
         case let .toggle(entry):
