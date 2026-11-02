@@ -79,3 +79,8 @@ python3 tools/scripts/patch-app-name.py
 
 # 15. Правка #4: иконка приложения ExteraGram (заменяет Telegram.icon)
 python3 tools/scripts/gen-appicon.py
+# 16. Баг: фоновый polling сообщений (ad-hoc без APNs)
+python3 tools/scripts/patch-background-polling.py
+
+# 17. Брендинг: самолётики Telegram → ExteraGram (tgs recolor + tlogo PNG)
+python3 tools/scripts/patch-branding.py
