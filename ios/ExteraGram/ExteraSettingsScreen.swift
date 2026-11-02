@@ -289,7 +289,7 @@ public func exteraSettingsController(context: AccountContext) -> ViewController 
         queue: .mainQueue(),
         context.sharedContext.presentationData
         |> map { ItemListPresentationData($0) },
-        updateState
+        updateState.get()
     ) |> map { presentationData, _ in
         let toggles = exteraToggleEntries()
         let adjusts = exteraAdjustEntries()
@@ -309,8 +309,8 @@ public func exteraSettingsController(context: AccountContext) -> ViewController 
 
         let nodeState = ItemListNodeState(
             presentationData: presentationData,
-            identifier: "",
-            items: items,
+            entries: items,
+            style: .blocks,
             animateChanges: false
         )
         let controllerState = ItemListControllerState(
