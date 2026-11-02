@@ -25,7 +25,7 @@ if marker in s:
 old_init = '''        self.accountsAndKeysDisposable = (accounts
         |> mapToSignal { accounts -> Signal<[(Account, Bool, MasterNotificationKey)], NoError> in'''
 new_init = f'''        // {marker}: фоновый polling сообщений (ad-hoc без APNs)
-        self.setupBackgroundPolling(accounts: accounts)
+        self.setupBackgroundPolling(inForeground: inForeground, accounts: accounts)
 
         self.accountsAndKeysDisposable = (accounts
         |> mapToSignal {{ accounts -> Signal<[(Account, Bool, MasterNotificationKey)], NoError> in'''
@@ -42,7 +42,7 @@ new_deinit = f'''    // {marker}: таймер фонового опроса
     private var backgroundPollingTimer: SwiftSignalKit.Timer?
     private var backgroundPollingDisposable: Disposable?
 
-    private func setupBackgroundPolling(accounts: Signal<[(Account, Bool)], NoError>) {{
+    private func setupBackgroundPolling(inForeground: Signal<Bool, NoError>, accounts: Signal<[(Account, Bool)], NoError>) {{
         // при изменении аккаунтов — перезапускаем polling в фоне
         self.backgroundPollingDisposable = (accounts
         |> deliverOnMainQueue).startStrict(next: {{ [weak self] accounts in
