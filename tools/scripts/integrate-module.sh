@@ -35,6 +35,14 @@ swift_library(
     data = [
         ":resources",
     ],
+    deps = [
+        "//submodules/Display:Display",
+        "//submodules/TelegramPresentationData:TelegramPresentationData",
+        "//submodules/ItemListUI:ItemListUI",
+        "//submodules/PresentationDataUtils:PresentationDataUtils",
+        "//submodules/SSignalKit/SwiftSignalKit:SwiftSignalKit",
+        "//submodules/AccountContext:AccountContext",
+    ],
     visibility = ["//visibility:public"],
 )
 
