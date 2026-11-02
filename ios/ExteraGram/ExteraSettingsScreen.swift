@@ -204,12 +204,12 @@ private enum ExteraSettingsEntryItem: ItemListNodeEntry, Equatable {
                 presentationData: presentationData,
                 title: entry.title,
                 value: entry.value,
+                enableInteractiveChanges: true,
                 sectionId: entry.section.rawValue,
                 style: .blocks,
                 updated: { value in
                     ExteraConfig.shared[keyPath: entry.keyPath] = value
-                },
-                enableInteractiveChanges: true
+                }
             )
         case let .adjust(entry):
             let formatted = String(format: "%.0f", entry.value)
@@ -258,17 +258,29 @@ public func exteraSettingsController(context: AccountContext) -> ViewController 
         toggle: { keyPath in
             let current = ExteraConfig.shared[keyPath: keyPath]
             ExteraConfig.shared[keyPath: keyPath] = !current
-            let _ = updateStateValue.modify { $0 += 1 }
+            let _ = updateStateValue.modify { value in
+                var v = value
+                v += 1
+                return v
+            }
             updateState.set(updateStateValue.with { $0 })
         },
         adjust: { keyPath, value in
             ExteraConfig.shared[keyPath: keyPath] = value
-            let _ = updateStateValue.modify { $0 += 1 }
+            let _ = updateStateValue.modify { state in
+                var v = state
+                v += 1
+                return v
+            }
             updateState.set(updateStateValue.with { $0 })
         },
         resetAll: {
             ExteraConfig.shared.resetAll()
-            let _ = updateStateValue.modify { $0 += 1 }
+            let _ = updateStateValue.modify { state in
+                var v = state
+                v += 1
+                return v
+            }
             updateState.set(updateStateValue.with { $0 })
         }
     )
