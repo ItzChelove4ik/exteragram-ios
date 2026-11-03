@@ -45,9 +45,13 @@ jobs:
           # указывал на telegram-ios вместо ali-fareed/webrtc) — sync восстанавливает
           cd ios/telegram-ios
           git submodule sync --recursive
-          git submodule update --init --recursive --depth 1             third-party/webrtc/webrtc ||             (git -C third-party/webrtc/webrtc remote set-url origin https://github.com/ali-fareed/webrtc.git              && git -C third-party/webrtc/webrtc fetch origin 6513c71d6c80311d69a0a6b9c09fcf32cfbeb247              && git -C third-party/webrtc/webrtc checkout 6513c71d6c80311d69a0a6b9c09fcf32cfbeb247)
+          git submodule update --init --recursive --depth 1 third-party/webrtc/webrtc || {
+            git -C third-party/webrtc/webrtc remote set-url origin https://github.com/ali-fareed/webrtc.git
+            git -C third-party/webrtc/webrtc fetch origin 6513c71d6c80311d69a0a6b9c09fcf32cfbeb247
+            git -C third-party/webrtc/webrtc checkout 6513c71d6c80311d69a0a6b9c09fcf32cfbeb247
+          }
 
-      - name: Free disk space (ExteraGram tmp fix: TMPDIR для swift workers)
+      - name: Free disk space (tmpdir fix for swift workers)
         shell: bash
         run: |
           # очистка для ~40GB билда
