@@ -158,4 +158,3 @@ jobs:
           files: build-artifacts/ExteraGram-iOS-unsigned.ipa
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-# workflow re-registration
