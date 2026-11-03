@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
-"""Патч Telegram/BUILD: подключить ExteraGram как депенденси приложения.
+"""Патч Telegram/BUILD: подключить ExteraGram как dep модуля Lib.
 
-Идемпотентно: проверяет маркер. Добавляет "//submodules/ExteraGram:ExteraGram"
-в deps основного ios_application "Telegram" (через frameworks-список нельзя —
-это swift_library, не framework; используем deps через мост objc —
-проще: добавляем в deps одного из framework-таргетов приложения).
-
-Надёжный путь: swift_library добавляется в deps Telegram через
-SwiftObjCBridge — но у правила ios_application deps допустимы.
+swift_library в deps ios_application не линкуется статически в бинарник —
+dep должен быть в swift-модуле, который линкуется (Lib → main binary).
+Идемпотентно.
 """
-import re
 import sys
 
 p = "ios/telegram-ios/Telegram/BUILD"
@@ -20,15 +15,10 @@ if marker in s:
     print("BUILD already patched")
     sys.exit(0)
 
-# Найдём первый ios_application(name = "Telegram") и добавим dep в deps
-# (swift_library нельзя в frameworks — там требуются AppleBundleInfo-таргеты)
-i = s.index('ios_application(\n    name = "Telegram",')
-if i == -1:
-    print("ios_application Telegram not found")
-    sys.exit(1)
-# deps = [ ":Main", ":Lib", ... ] — ищем после ios_application
-j = s.index("deps = [", i)
-insert = "\n        \"//submodules/ExteraGram:ExteraGram\","
-s = s[: j + len("deps = [")] + insert + s[j + len("deps = [") :]
-open(p, "w", encoding="utf-8", newline="\n").write(s)
-print("BUILD patched: ExteraGram dep added")
+# Lib deps: после "//submodules/TelegramUI:TelegramUI",
+i_lib = s.index('name = "Lib"')
+i_dep = s.index('"//submodules/TelegramUI:TelegramUI",', i_lib)
+insert = '"//submodules/ExteraGram:ExteraGram",'
+s = s[:i_dep] + insert + chr(10) + '        ' + s[i_dep:]
+open(p, "w", encoding="utf-8", newline=chr(10)).write(s)
+print("BUILD patched: ExteraGram dep added to Lib")
