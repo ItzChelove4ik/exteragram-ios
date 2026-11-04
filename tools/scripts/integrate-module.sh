@@ -95,3 +95,6 @@ python3 tools/scripts/patch-branding.py
 
 # 18. Меню настроек мода (пункт exteraGram в настройках приложения)
 python3 tools/scripts/patch-settings-menu.py
+
+# 19. РАБОТАЮЩИЕ фичи (хуки рендера: аватары, хвост, радиусы, центр заголовка)
+python3 tools/scripts/patch-working-features.py
