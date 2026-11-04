@@ -42,7 +42,12 @@ def recolor_blue(obj):
         for k, v in obj.items():
             if k == 'k' and isinstance(v, list) and len(v) == 4 and all(isinstance(x, (int, float)) for x in v):
                 r, g, b, a = v
+                # синий Telegram
                 if b > 0.3 and b > r + 0.1 and b > g + 0.05:
+                    obj[k] = [EXTRA_RED[0], EXTRA_RED[1], EXTRA_RED[2], a]
+                # розово-фиолетовый Telegram-бренд (IntroPhone градиент):
+                # r > g, b > g (розовый) — красим в красный ExteraGram
+                elif r > 0.35 and b > g + 0.01 and r > b:
                     obj[k] = [EXTRA_RED[0], EXTRA_RED[1], EXTRA_RED[2], a]
             else:
                 recolor_blue(v)

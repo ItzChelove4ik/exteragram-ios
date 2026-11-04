@@ -92,3 +92,6 @@ python3 tools/scripts/patch-background-polling.py
 
 # 17. Брендинг: самолётики Telegram → ExteraGram (tgs recolor + tlogo PNG)
 python3 tools/scripts/patch-branding.py
+
+# 18. Меню настроек мода (пункт exteraGram в настройках приложения)
+python3 tools/scripts/patch-settings-menu.py
