@@ -40,7 +40,7 @@ patch(
     '''            case .roundedRect:
                 self.imageNode.clipsToBounds = true
                 // ExteraGram avatarCorners: 0-100% скругления из настроек мода
-                self.imageNode.cornerRadius = displayDimensions.height * ExteraConfig.shared.avatarCorners / 200.0''',
+                self.imageNode.cornerRadius = displayDimensions.height * CGFloat(ExteraConfig.shared.avatarCorners) / 200.0''',
     'ExteraGram avatarCorners',
 )
 
