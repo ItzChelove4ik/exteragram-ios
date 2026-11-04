@@ -101,7 +101,9 @@ patch(
     let bandWidth = width - leftInset - rightInset''',
     '''public func navigationBarTextTitleOriginX(width: CGFloat, leftInset: CGFloat, rightInset: CGFloat, leftTitleInset: CGFloat, rightTitleInset: CGFloat, titleWidth: CGFloat) -> CGFloat {
     // ExteraGram centerTitle: заголовок всегда по центру экрана
-    if ExteraConfig.shared.centerTitle {
+    // (inline UserDefaults — Display не может зависеть от ExteraGram: цикл)
+    let exteraDefaults = UserDefaults(suiteName: "exteraconfig") ?? .standard
+    if exteraDefaults.object(forKey: "centerTitle") as? Bool ?? false {
         let x = floor((width - titleWidth) / 2.0)
         if x > leftInset && x + titleWidth < width - rightInset {
             return x
@@ -128,7 +130,6 @@ NL = chr(10)
 IMPORT_FILES = [
     'submodules/AvatarNode/Sources/AvatarNode.swift',
     'submodules/TelegramPresentationData/Sources/PresentationData.swift',
-    'submodules/Display/Source/NavigationBarTitlePlacement.swift',
     'submodules/TelegramUI/Components/Chat/ChatMessageBubbleItemNode/Sources/ChatMessageBubbleItemNode.swift',
 ]
 for rel in IMPORT_FILES:
@@ -143,7 +144,6 @@ for rel in IMPORT_FILES:
 BUILD_DEPS = [
     'submodules/AvatarNode/BUILD',
     'submodules/TelegramPresentationData/BUILD',
-    'submodules/Display/BUILD',
     'submodules/TelegramUI/Components/Chat/ChatMessageBubbleItemNode/BUILD',
 ]
 for rel in BUILD_DEPS:

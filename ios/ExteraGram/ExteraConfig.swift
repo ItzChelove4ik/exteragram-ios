@@ -987,4 +987,30 @@ public final class ExteraConfig {
             self.defaults.set(data, forKey: key)
         }
     }
+
+/// Лёгкий доступ к настройкам для низкоуровневых модулей (Display и т.п.),
+/// которые не могут зависеть от ExteraGram (цикл зависимостей).
+/// Читает UserDefaults напрямую с теми же ключами.
+public struct ExteraConfigLight {
+    static var defaults: UserDefaults {
+        return UserDefaults(suiteName: "exteraconfig") ?? .standard
+    }
+
+    public static var centerTitle: Bool {
+        return defaults.object(forKey: "centerTitle") as? Bool ?? false
+    }
+
+    public static var avatarCorners: Float {
+        return defaults.object(forKey: "avatarCorners") as? Float ?? 28.0
+    }
+
+    public static var removeMessageTail: Bool {
+        return defaults.object(forKey: "removeMessageTail") as? Bool ?? true
+    }
+
+    public static var sectionRadius: Float {
+        return defaults.object(forKey: "sectionRadius") as? Float ?? 20.0
+    }
+}
+
 }
