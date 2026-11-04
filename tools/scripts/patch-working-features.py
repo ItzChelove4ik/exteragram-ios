@@ -74,7 +74,7 @@ patch(
 
     /// ExteraGram sectionRadius: радиус баблов из настроек мода (0-40dp).
     public static func exteraAdjusted(mainRadius: CGFloat, auxiliaryRadius: CGFloat, mergeBubbleCorners: Bool) -> PresentationChatBubbleCorners {
-        let cfg = ExteraConfig.shared.sectionRadius
+        let cfg: CGFloat = CGFloat(ExteraConfig.shared.sectionRadius)
         if cfg > 0.5 && abs(cfg - 16.0) > 0.5 {
             return PresentationChatBubbleCorners(mainRadius: min(24.0, cfg), auxiliaryRadius: min(16.0, cfg * 0.6875), mergeBubbleCorners: mergeBubbleCorners)
         }
