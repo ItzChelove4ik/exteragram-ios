@@ -6,6 +6,8 @@ import ItemListUI
 import PresentationDataUtils
 import SwiftSignalKit
 import AccountContext
+import ExteraGram
+import ExteraGramUI
 
 // MARK: - Экран настроек ExteraGram (порт General/Appearance/Chats/Other)
 

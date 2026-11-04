@@ -8,7 +8,7 @@ dep должен быть в swift-модуле, который линкуетс
 import sys
 
 p = "ios/telegram-ios/Telegram/BUILD"
-marker = "//submodules/ExteraGram:ExteraGram"
+marker = "//submodules/ExteraGram:ExteraGramCore"
 
 s = open(p, encoding="utf-8").read()
 if marker in s:
@@ -18,7 +18,7 @@ if marker in s:
 # Lib deps: после "//submodules/TelegramUI:TelegramUI",
 i_lib = s.index('name = "Lib"')
 i_dep = s.index('"//submodules/TelegramUI:TelegramUI",', i_lib)
-insert = '"//submodules/ExteraGram:ExteraGram",'
+insert = '"//submodules/ExteraGram:ExteraGramCore",'
 s = s[:i_dep] + insert + chr(10) + '        ' + s[i_dep:]
 open(p, "w", encoding="utf-8", newline=chr(10)).write(s)
 print("BUILD patched: ExteraGram dep added to Lib")

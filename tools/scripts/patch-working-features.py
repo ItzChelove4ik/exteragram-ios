@@ -154,7 +154,7 @@ for rel in BUILD_DEPS:
         if i == -1:
             print('NO deps:', rel)
             continue
-        s = s[:i + len('deps = [')] + NL + '        "//submodules/ExteraGram:ExteraGram",' + s[i + len('deps = ['):]
+        s = s[:i + len('deps = [')] + NL + '        "//submodules/ExteraGram:ExteraGramCore",' + s[i + len('deps = ['):]
         with open(path, 'w', encoding='utf-8', newline=NL) as f:
             f.write(s)
         print('BUILD dep ->', rel.split('/')[-2])

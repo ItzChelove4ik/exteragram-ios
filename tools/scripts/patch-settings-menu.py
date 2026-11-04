@@ -94,9 +94,9 @@ print('PeerInfoScreenSettingsActions patched')
 # 4. BUILD — dep модуля
 p4 = 'ios/telegram-ios/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/BUILD'
 s4 = open(p4, encoding='utf-8').read()
-if '//submodules/ExteraGram:ExteraGram' not in s4:
+if '//submodules/ExteraGram:ExteraGramUI' not in s4:
     s4 = s4.replace('        "//submodules/ItemListUI",',
-                    '        "//submodules/ItemListUI",' + NL + '        "//submodules/ExteraGram:ExteraGram",', 1)
+                    '        "//submodules/ItemListUI",' + NL + '        "//submodules/ExteraGram:ExteraGramUI",', 1)
     with open(p4, 'w', encoding='utf-8', newline=NL) as f:
         f.write(s4)
 print('PeerInfoScreen BUILD dep added')

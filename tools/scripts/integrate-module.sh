@@ -26,14 +26,27 @@ cp -r "$ASSETS/AppIcons.xcassets" "$DEST_SW/Resources/AppIcons.xcassets"
 cat > "$DEST_SW/BUILD" <<'BUILDEOF'
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
+# ExteraGramCore: конфиг и логика мода — БЕЗ UI-зависимостей (низкоуровневая;
+# на неё ссылаются AvatarNode/TelegramPresentationData без циклов)
 swift_library(
-    name = "ExteraGram",
+    name = "ExteraGramCore",
     module_name = "ExteraGram",
-    srcs = glob([
-        "Sources/*.swift",
-    ]),
+    srcs = glob(
+        ["Sources/*.swift"],
+        exclude = ["Sources/ExteraSettingsScreen.swift"],
+    ),
     data = [
         ":resources",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+# ExteraGramUI: экран настроек (тяжёлые UI-зависимости; только для PeerInfoScreen)
+swift_library(
+    name = "ExteraGramUI",
+    module_name = "ExteraGramUI",
+    srcs = [
+        "Sources/ExteraSettingsScreen.swift",
     ],
     deps = [
         "//submodules/Display:Display",
@@ -42,6 +55,7 @@ swift_library(
         "//submodules/PresentationDataUtils:PresentationDataUtils",
         "//submodules/SSignalKit/SwiftSignalKit:SwiftSignalKit",
         "//submodules/AccountContext:AccountContext",
+        "//submodules/ExteraGram:ExteraGramCore",
     ],
     visibility = ["//visibility:public"],
 )
