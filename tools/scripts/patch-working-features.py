@@ -121,4 +121,42 @@ patch(
 # Скрытие stories-полосы: в ChatListController.setupStoriesVisibility или узел.
 # Реальная точка требует точного кода экрана — WIP.
 
+
+# === Импорты и BUILD-депы для всех патченных файлов ===
+NL = chr(10)
+
+IMPORT_FILES = [
+    'submodules/AvatarNode/Sources/AvatarNode.swift',
+    'submodules/TelegramPresentationData/Sources/PresentationData.swift',
+    'submodules/Display/Source/NavigationBarTitlePlacement.swift',
+    'submodules/TelegramUI/Components/Chat/ChatMessageBubbleItemNode/Sources/ChatMessageBubbleItemNode.swift',
+]
+for rel in IMPORT_FILES:
+    path = B + rel
+    s = open(path, encoding='utf-8').read()
+    if 'import ExteraGram' not in s:
+        s = 'import ExteraGram' + NL + s
+        with open(path, 'w', encoding='utf-8', newline=NL) as f:
+            f.write(s)
+        print('import ->', rel.split('/')[-1])
+
+BUILD_DEPS = [
+    'submodules/AvatarNode/BUILD',
+    'submodules/TelegramPresentationData/BUILD',
+    'submodules/Display/BUILD',
+    'submodules/TelegramUI/Components/Chat/ChatMessageBubbleItemNode/BUILD',
+]
+for rel in BUILD_DEPS:
+    path = B + rel
+    s = open(path, encoding='utf-8').read()
+    if '//submodules/ExteraGram:ExteraGram' not in s:
+        i = s.find('deps = [')
+        if i == -1:
+            print('NO deps:', rel)
+            continue
+        s = s[:i + len('deps = [')] + NL + '        "//submodules/ExteraGram:ExteraGram",' + s[i + len('deps = ['):]
+        with open(path, 'w', encoding='utf-8', newline=NL) as f:
+            f.write(s)
+        print('BUILD dep ->', rel.split('/')[-2])
+
 print('done')
