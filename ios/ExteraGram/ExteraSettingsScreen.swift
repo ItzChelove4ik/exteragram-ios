@@ -96,7 +96,7 @@ private func exteraToggleEntries() -> [ExteraToggleEntry] {
     entries.append(ExteraToggleEntry(section: .appearance, title: "Новый стиль загрузки", key: "newLoadingStyle", value: c.newLoadingStyle, keyPath: \.newLoadingStyle))
     entries.append(ExteraToggleEntry(section: .appearance, title: "Новый стиль шапки чата", key: "newChatHeaderStyle", value: c.newChatHeaderStyle, keyPath: \.newChatHeaderStyle))
     entries.append(ExteraToggleEntry(section: .appearance, title: "Системные шрифты", key: "useSystemFonts", value: c.useSystemFonts, keyPath: \.useSystemFonts))
-    entries.append(ExteraAdjustEntry(section: .appearance, title: "Скругление стикеров", key: "stickerShape", value: c.stickerShape, keyPath: \.stickerShape))
+
     // Chats
     entries.append(ExteraToggleEntry(section: .chats, title: "Инлайн-математика", key: "inlineMathResult", value: c.inlineMathResult, keyPath: \.inlineMathResult))
     entries.append(ExteraToggleEntry(section: .chats, title: "Отключить Markdown", key: "disableMarkdown", value: c.disableMarkdown, keyPath: \.disableMarkdown))
